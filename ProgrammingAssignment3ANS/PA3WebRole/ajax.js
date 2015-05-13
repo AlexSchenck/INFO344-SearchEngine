@@ -1,4 +1,1 @@
-﻿function ajaxStartCrawling()
-{
-    alert("works");
-}
+﻿function ajaxStartCrawl() {}
