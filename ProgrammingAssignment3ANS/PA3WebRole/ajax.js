@@ -1,1 +1,4 @@
-﻿
+﻿function ajaxStartCrawling()
+{
+    alert("works");
+}

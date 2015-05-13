@@ -1,21 +1,29 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title></title>
+    <title>ANS Web Crawler</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="StyleSheet1.css">
 </head>
 <body>
-    On our dashboard, we would like to see the following:<br>
-    State of worker role<br>
-    Machine counters (CPU Utilization %, RAM available)<br>
-    #URL's crawled<br>
-    Last 10 URL's crawled<br>
-    Size of queue (#urls left in pipeline to be crawled)<br>
-    Size of index (Table storage with our crawled data)<br>
-    Any errors and their URL's<br><br>
+    <div class="container">
+        <button type="button" class="btn btn-default" onclick="ajaxStartCrawling()">Start Crawling</button>
+        <br>On our dashboard, we would like to see the following:<br>
+        State of worker role<br>
+        Machine counters (CPU Utilization %, RAM available)<br>
+        #URL's crawled<br>
+        Last 10 URL's crawled<br>
+        Size of queue (#urls left in pipeline to be crawled)<br>
+        Size of index (Table storage with our crawled data)<br>
+        Any errors and their URL's<br><br>
 
-    On the dashboard, we also want the follwing functionality:<br>
-    Clear everything (index/table, queue/pipeline, stop all worker roles)<br>
-    Start crawling (give a root URL, ex: www.cnn.com and kick off worker roles)<br>
-    Retrieve data from index (get page title for specific URL)<br>
+        On the dashboard, we also want the follwing functionality:<br>
+        Clear everything (index/table, queue/pipeline, stop all worker roles)<br>
+        Start crawling (give a root URL, ex: www.cnn.com and kick off worker roles)<br>
+        Retrieve data from index (get page title for specific URL)<br>
+    </div>
+    <script src="ajax.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </body>
 </html>

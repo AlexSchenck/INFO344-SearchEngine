@@ -22,14 +22,14 @@
     </Endpoints>
     <Contents>
       <Content destination=".\">
-        <SourceDirectory path="c:\users\alex\documents\visual studio 2013\Projects\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\rcf\Debug\PA3WebRoleContent\" />
+        <SourceDirectory path="C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\rcf\Debug\PA3WebRoleContent\" />
       </Content>
     </Contents>
   </WebRole>
   <WorkerRole name="PA3WorkerRole" vmsize="Small">
     <Contents>
       <Content destination=".\">
-        <SourceDirectory path="c:\users\alex\documents\visual studio 2013\Projects\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\rcf\Debug\PA3WorkerRoleContent\" />
+        <SourceDirectory path="C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\rcf\Debug\PA3WorkerRoleContent\" />
       </Content>
     </Contents>
   </WorkerRole>
