@@ -109,7 +109,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WebCrawler.cs" />
     <Compile Include="WebRole.cs" />
   </ItemGroup>
   <PropertyGroup>

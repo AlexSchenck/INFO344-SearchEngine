@@ -27,24 +27,31 @@ namespace PA3WebRole
 
         public admin()
         {
-            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
-                ConfigurationManager.AppSettings["StorageConnectionString"]);
+            //CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
+            //    ConfigurationManager.AppSettings["StorageConnectionString"]);
 
-            CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
-            table = tableClient.GetTableReference("urlTable");
-            table.CreateIfNotExists();
+            //CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
+            //table = tableClient.GetTableReference("urlTable");
+            //table.CreateIfNotExists();
 
-            CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
-            queue = queueClient.GetQueueReference("urlQueue");
-            queue.CreateIfNotExists();
+            //CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
+            //queue = queueClient.GetQueueReference("urlQueue");
+            //queue.CreateIfNotExists();
         }
 
+        [WebMethod]
         public void StartCrawling() { }
 
+        [WebMethod]
         public void StopCrawling() { }
 
+        [WebMethod]
         public void ClearIndex() { }
 
-        public void GetPageTitle() { }
+        [WebMethod]
+        public string GetPageTitle(string url) { return null; }
+
+        [WebMethod]
+        public List<string> GetStatus() { return null; }
     }
 }
