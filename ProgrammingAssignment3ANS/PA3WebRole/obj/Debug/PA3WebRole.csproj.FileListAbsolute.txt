@@ -111,6 +111,5 @@ C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignme
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WebRole\bin\ru\System.Spatial.resources.dll
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WebRole\bin\zh-Hans\System.Spatial.resources.dll
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WebRole\bin\zh-Hant\System.Spatial.resources.dll
-C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WebRole\obj\Debug\PA3WebRole.csprojResolveAssemblyReference.cache
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WebRole\obj\Debug\PA3WebRole.dll
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WebRole\obj\Debug\PA3WebRole.pdb
