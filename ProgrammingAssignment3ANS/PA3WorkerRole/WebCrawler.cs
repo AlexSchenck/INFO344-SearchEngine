@@ -5,28 +5,26 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using System.Web;
-using System.Web.Services;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace PA3WebRole
+namespace PA3WorkerRole
 {
-    /// <summary>
-    /// Summary description for admin
-    /// </summary>
-    [WebService(Namespace = "http://tempuri.org/")]
-    [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
-    [System.ComponentModel.ToolboxItem(false)]
-    // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
-    [System.Web.Script.Services.ScriptService]
-    public class admin : System.Web.Services.WebService
+    class WebCrawler
     {
-        private static string cnnRobots = "http://www.cnn.com/robots.txt";
+        private static string IDLE = "Idle";
+        private static string LOADING = "Loading";
+        private static string CRAWLING = "Crawling";
+
+        private string status;
 
         private static CloudTable table;
         private static CloudQueue queue;
 
-        public admin()
+        public WebCrawler()
         {
+            status = IDLE;
+
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
                 ConfigurationManager.AppSettings["StorageConnectionString"]);
 
@@ -38,13 +36,5 @@ namespace PA3WebRole
             queue = queueClient.GetQueueReference("urlQueue");
             queue.CreateIfNotExists();
         }
-
-        public void StartCrawling() { }
-
-        public void StopCrawling() { }
-
-        public void ClearIndex() { }
-
-        public void GetPageTitle() { }
     }
 }

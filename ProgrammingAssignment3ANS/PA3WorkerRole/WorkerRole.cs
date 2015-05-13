@@ -20,23 +20,9 @@ namespace PA3WorkerRole
         private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         private readonly ManualResetEvent runCompleteEvent = new ManualResetEvent(false);
 
-        private static CloudTable table;
-        private static CloudQueue queue;
-
         public override void Run()
         {
             Trace.TraceInformation("PA3WorkerRole is running");
-
-            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
-                ConfigurationManager.AppSettings["StorageConnectionString"]);
-
-            CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
-            table = tableClient.GetTableReference("urlTable");
-            table.CreateIfNotExists();
-
-            CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
-            queue = queueClient.GetQueueReference("urlQueue");
-            queue.CreateIfNotExists();
 
             try
             {
