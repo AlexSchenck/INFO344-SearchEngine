@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PA3WebRole", "PA3WebRole\PA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PA3WorkerRole", "PA3WorkerRole\PA3WorkerRole.csproj", "{704E0A7C-0074-40B6-8B94-8BCF72FBF27A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StorageLibrary", "StorageLibrary\StorageLibrary.csproj", "{8E3F7D9B-472C-4D9E-AF1E-6B21B9C65FC4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{704E0A7C-0074-40B6-8B94-8BCF72FBF27A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{704E0A7C-0074-40B6-8B94-8BCF72FBF27A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{704E0A7C-0074-40B6-8B94-8BCF72FBF27A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E3F7D9B-472C-4D9E-AF1E-6B21B9C65FC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E3F7D9B-472C-4D9E-AF1E-6B21B9C65FC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E3F7D9B-472C-4D9E-AF1E-6B21B9C65FC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E3F7D9B-472C-4D9E-AF1E-6B21B9C65FC4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

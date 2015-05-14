@@ -22,23 +22,6 @@ namespace PA3WebRole
     {
         private static string cnnRobots = "http://www.cnn.com/robots.txt";
 
-        private static CloudTable table;
-        private static CloudQueue queue;
-
-        public admin()
-        {
-            //CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
-            //    ConfigurationManager.AppSettings["StorageConnectionString"]);
-
-            //CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
-            //table = tableClient.GetTableReference("urlTable");
-            //table.CreateIfNotExists();
-
-            //CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
-            //queue = queueClient.GetQueueReference("urlQueue");
-            //queue.CreateIfNotExists();
-        }
-
         [WebMethod]
         public void StartCrawling() { }
 
