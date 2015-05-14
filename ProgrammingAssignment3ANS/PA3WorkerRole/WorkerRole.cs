@@ -79,12 +79,13 @@ namespace PA3WorkerRole
                     string command = commandMessage.ToString();
                     if (command.StartsWith(StorageManager.START_MESSAGE))
                     {
-                        // start message
+                        // start message received
                         // start crawl
                     }
                     else if (command.StartsWith(StorageManager.STOP_MESSAGE))
                     {
-                        // stop message
+                        // stop message receved
+                        // stop crawl
                     }
                     // else: not recognized
                 }

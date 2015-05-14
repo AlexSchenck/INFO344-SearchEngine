@@ -114,3 +114,5 @@ C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignme
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WorkerRole\obj\Debug\PA3WorkerRole.csprojResolveAssemblyReference.cache
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WorkerRole\obj\Debug\PA3WorkerRole.dll
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WorkerRole\obj\Debug\PA3WorkerRole.pdb
+C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WorkerRole\bin\Debug\StorageLibrary.dll
+C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WorkerRole\bin\Debug\StorageLibrary.pdb

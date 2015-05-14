@@ -15,24 +15,25 @@ namespace StorageLibrary
         public static string START_MESSAGE = "start";
         public static string STOP_MESSAGE = "stop";
 
+        private static CloudStorageAccount storageAccount;
         private static CloudTable urlTable; // Table with indexed urls with page titles
         private static CloudQueue urlQueue; // Queue with urls yet to be indexed
         private static CloudQueue commandQueue; // Queue with commands for worker role
 
         public StorageManager()
         {
-            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
-                ConfigurationManager.AppSettings["StorageConnectionString"]);
+            string connectionString = ConfigurationManager.AppSettings["StorageConnectionString"];
+            storageAccount = CloudStorageAccount.Parse(connectionString);
 
             CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
-            urlTable = tableClient.GetTableReference("urlTable");
+            urlTable = tableClient.GetTableReference("urltable");
             urlTable.CreateIfNotExists();
 
             CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
-            urlQueue = queueClient.GetQueueReference("urlQueue");
+            urlQueue = queueClient.GetQueueReference("urlqueue");
             urlQueue.CreateIfNotExists();
 
-            commandQueue = queueClient.GetQueueReference("commandQueue");
+            commandQueue = queueClient.GetQueueReference("commandqueue");
             commandQueue.CreateIfNotExists();
         }
 
