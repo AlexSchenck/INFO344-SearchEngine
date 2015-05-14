@@ -3,6 +3,7 @@
     $.ajax({
         type: "POST",
         url: "admin.asmx/StartCrawling",
+        data: "{url: 'http://www.cnn.com/robots.txt'}",
         contentType: "application/json; charset=utf-8",
         success: function (msg) {
             console.log("ajaxStartCrawl success");

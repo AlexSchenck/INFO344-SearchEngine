@@ -12,6 +12,7 @@ using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
 using Microsoft.WindowsAzure.Storage.Queue;
 using System.Configuration;
+using StorageLibrary;
 
 namespace PA3WorkerRole
 {
@@ -20,9 +21,13 @@ namespace PA3WorkerRole
         private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         private readonly ManualResetEvent runCompleteEvent = new ManualResetEvent(false);
 
+        private static StorageManager manager;
+
         public override void Run()
         {
             Trace.TraceInformation("PA3WorkerRole is running");
+
+            manager = new StorageManager();
 
             try
             {
@@ -46,6 +51,8 @@ namespace PA3WorkerRole
 
             Trace.TraceInformation("PA3WorkerRole has been started");
 
+
+
             return result;
         }
 
@@ -66,8 +73,25 @@ namespace PA3WorkerRole
             // TODO: Replace the following with your own logic.
             while (!cancellationToken.IsCancellationRequested)
             {
-                Trace.TraceInformation("Working");
-                await Task.Delay(1000);
+                CloudQueueMessage commandMessage = manager.getCommandQueue().GetMessage();
+                if (commandMessage != null)
+                {
+                    string command = commandMessage.ToString();
+                    if (command.StartsWith(StorageManager.START_MESSAGE))
+                    {
+                        // start message
+                        // start crawl
+                    }
+                    else if (command.StartsWith(StorageManager.STOP_MESSAGE))
+                    {
+                        // stop message
+                    }
+                    // else: not recognized
+                }
+
+                // no command message, continue crawling/loading/idling
+
+                await Task.Delay(50);
             }
         }
     }

@@ -18,23 +18,14 @@ namespace PA3WorkerRole
 
         private string status;
 
-        private static CloudTable table;
-        private static CloudQueue queue;
-
         public WebCrawler()
         {
             status = IDLE;
+        }
 
-            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
-                ConfigurationManager.AppSettings["StorageConnectionString"]);
-
-            CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
-            table = tableClient.GetTableReference("urlTable");
-            table.CreateIfNotExists();
-
-            CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
-            queue = queueClient.GetQueueReference("urlQueue");
-            queue.CreateIfNotExists();
+        public string getStatus()
+        {
+            return status;
         }
     }
 }

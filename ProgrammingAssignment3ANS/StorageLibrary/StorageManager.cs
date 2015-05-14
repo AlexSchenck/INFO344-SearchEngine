@@ -12,6 +12,9 @@ namespace StorageLibrary
 {
     public class StorageManager
     {
+        public static string START_MESSAGE = "start";
+        public static string STOP_MESSAGE = "stop";
+
         private static CloudTable urlTable; // Table with indexed urls with page titles
         private static CloudQueue urlQueue; // Queue with urls yet to be indexed
         private static CloudQueue commandQueue; // Queue with commands for worker role

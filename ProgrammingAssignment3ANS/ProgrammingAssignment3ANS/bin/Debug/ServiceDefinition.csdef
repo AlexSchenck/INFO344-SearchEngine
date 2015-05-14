@@ -20,17 +20,6 @@
     <Endpoints>
       <InputEndpoint name="Endpoint1" protocol="http" port="80" />
     </Endpoints>
-    <Contents>
-      <Content destination=".\">
-        <SourceDirectory path="C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\rcf\Debug\PA3WebRoleContent\" />
-      </Content>
-    </Contents>
   </WebRole>
-  <WorkerRole name="PA3WorkerRole" vmsize="Small">
-    <Contents>
-      <Content destination=".\">
-        <SourceDirectory path="C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\rcf\Debug\PA3WorkerRoleContent\" />
-      </Content>
-    </Contents>
-  </WorkerRole>
+  <WorkerRole name="PA3WorkerRole" vmsize="Small" />
 </ServiceDefinition>

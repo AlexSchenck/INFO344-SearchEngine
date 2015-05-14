@@ -83,6 +83,12 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StorageLibrary\StorageLibrary.csproj">
+      <Project>{8e3f7d9b-472c-4d9e-af1e-6b21b9c65fc4}</Project>
+      <Name>StorageLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
