@@ -54,7 +54,7 @@ namespace StorageLibrary
 
         public int getTableSize(CloudTable table)
         {
-            
+            return -1;
         }
 
         public int getQueueSize(CloudQueue queue)

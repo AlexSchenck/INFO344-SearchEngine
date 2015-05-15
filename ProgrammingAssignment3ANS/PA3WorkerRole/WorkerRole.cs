@@ -14,6 +14,7 @@ using Microsoft.WindowsAzure.Storage.Queue;
 using System.Configuration;
 using System.IO;
 using StorageLibrary;
+using System.Xml;
 
 namespace PA3WorkerRole
 {
@@ -92,8 +93,6 @@ namespace PA3WorkerRole
                         if (crawler.getStatus().Equals(WebCrawler.IDLE))
                         {
                             crawler.setStatus(WebCrawler.LOADING);
-                            int linesRead = 1;
-                            int urlsAdded = 0;
 
                             // Read robots.txt file
                             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(fullCommand[1]);
@@ -108,8 +107,6 @@ namespace PA3WorkerRole
                                 string line;
                                 while ((line = reader.ReadLine()) != null)
                                 {
-                                    Debug.WriteLine(linesRead++);
-
                                     // Separate all line elements by spaces
                                     string[] elements = line.Split(new char[] {' '});
                                     for (int i = 0; i < elements.Length; i++)
@@ -118,8 +115,20 @@ namespace PA3WorkerRole
                                             xmlList.Add(elements[i]);
                                     }
                                 }
+                            }
 
-                                Debug.WriteLine(xmlList);
+                            // Finish loading
+                            // If xml document is found (within last 2 months), add to xmlList
+                            // If html page is found, add to queue
+                            while (xmlList.Count != 0)
+                            {
+                                using (XmlReader xreader = XmlReader.Create(new StringReader(xmlList[0])))
+                                {
+                                    xreader.ReadToFollowing("loc");
+                                    Debug.WriteLine("ANSANS " + xreader.ReadElementContentAsString());
+                                }
+
+                                xmlList.RemoveAt(0);
                             }
                         }
                     }
