@@ -5,6 +5,7 @@ using StorageLibrary;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
@@ -22,10 +23,12 @@ namespace PA3WebRole
     public class admin : System.Web.Services.WebService
     {
         private static StorageManager manager;
+        private static WebCrawler crawler;
 
         public admin()
         {
             manager = new StorageManager();
+            crawler = WebCrawler.getInstance();
         }
 
         [WebMethod]
@@ -50,6 +53,26 @@ namespace PA3WebRole
         public string GetPageTitle(string url) { return null; }
 
         [WebMethod]
-        public List<string> GetStatus() { return null; }
+        public List<string> GetStatus() 
+        {
+            List<string> results = new List<string>();
+            
+            // State of worker role
+            results.Add(crawler.getStatus());
+            Debug.WriteLine(crawler.getStatus());
+
+            // CPU utilization %
+            // RAM available
+            // # URL's crawled
+            // Last 10 URL's crawled
+
+            // Size of queue (number of URL's to be crawled)
+            manager.getQueueSize(manager.getUrlQueue());
+
+            // Size of index (table storage with crawled data)
+            // Any error URL's
+
+            return null; 
+        }
     }
 }

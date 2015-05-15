@@ -8,24 +8,42 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PA3WorkerRole
+namespace StorageLibrary
 {
-    class WebCrawler
+    public sealed class WebCrawler
     {
-        private static string IDLE = "Idle";
-        private static string LOADING = "Loading";
-        private static string CRAWLING = "Crawling";
+        public static string IDLE = "Idle";
+        public static string LOADING = "Loading";
+        public static string CRAWLING = "Crawling";
+
+        private static WebCrawler instance;
 
         private string status;
 
-        public WebCrawler()
+        // WebCrawler -- singleton instance
+        private WebCrawler()
         {
             status = IDLE;
+        }
+
+        public static WebCrawler getInstance()
+        {
+            if (instance == null)
+            {
+                instance = new WebCrawler();
+            }
+
+            return instance;
         }
 
         public string getStatus()
         {
             return status;
+        }
+
+        public void setStatus(string newStatus)
+        {
+            status = newStatus;
         }
     }
 }

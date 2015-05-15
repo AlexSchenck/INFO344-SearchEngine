@@ -56,6 +56,7 @@ c:\users\alex\documents\visual studio 2013\Projects\ProgrammingAssignment3ANS\PA
 c:\users\alex\documents\visual studio 2013\Projects\ProgrammingAssignment3ANS\PA3WorkerRole\obj\Debug\PA3WorkerRole.csprojResolveAssemblyReference.cache
 c:\users\alex\documents\visual studio 2013\Projects\ProgrammingAssignment3ANS\PA3WorkerRole\obj\Debug\PA3WorkerRole.dll
 c:\users\alex\documents\visual studio 2013\Projects\ProgrammingAssignment3ANS\PA3WorkerRole\obj\Debug\PA3WorkerRole.pdb
+C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WorkerRole\obj\Debug\PA3WorkerRole.csprojResolveAssemblyReference.cache
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WorkerRole\bin\Debug\PA3WorkerRole.dll.config
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WorkerRole\bin\Debug\PA3WorkerRole.dll
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WorkerRole\bin\Debug\PA3WorkerRole.pdb
@@ -66,8 +67,10 @@ C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignme
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WorkerRole\bin\Debug\Microsoft.WindowsAzure.Diagnostics.dll
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WorkerRole\bin\Debug\Microsoft.WindowsAzure.Storage.dll
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WorkerRole\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WorkerRole\bin\Debug\StorageLibrary.dll
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WorkerRole\bin\Debug\System.Spatial.dll
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WorkerRole\bin\Debug\MonAgentListener.dll
+C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WorkerRole\bin\Debug\StorageLibrary.pdb
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WorkerRole\bin\Debug\Microsoft.Data.Edm.xml
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WorkerRole\bin\Debug\Microsoft.Data.OData.xml
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WorkerRole\bin\Debug\Microsoft.Data.Services.Client.xml
@@ -111,8 +114,5 @@ C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignme
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WorkerRole\bin\Debug\ru\System.Spatial.resources.dll
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WorkerRole\bin\Debug\zh-Hans\System.Spatial.resources.dll
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WorkerRole\bin\Debug\zh-Hant\System.Spatial.resources.dll
-C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WorkerRole\obj\Debug\PA3WorkerRole.csprojResolveAssemblyReference.cache
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WorkerRole\obj\Debug\PA3WorkerRole.dll
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WorkerRole\obj\Debug\PA3WorkerRole.pdb
-C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WorkerRole\bin\Debug\StorageLibrary.dll
-C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WorkerRole\bin\Debug\StorageLibrary.pdb

@@ -51,5 +51,16 @@ namespace StorageLibrary
         {
             return commandQueue;
         }
+
+        public int getTableSize(CloudTable table)
+        {
+            
+        }
+
+        public int getQueueSize(CloudQueue queue)
+        {
+            queue.FetchAttributes();
+            return (int) queue.ApproximateMessageCount;
+        }
     }
 }
