@@ -9,7 +9,7 @@
     <div class="container">
         <div class="page-header"><h1>ANS Web Crawler Dashboard</h1></div>
         <button class="btn btn-default" onclick="ajaxStartCrawl()">Start Crawling</button>
-        <label class="radio-inline"><input type="radio" name="website">CNN</label>
+        <label class="radio-inline"><input type="radio" name="website" checked="true">CNN</label>
         <label class="radio-inline"><input type="radio" name="website">Bleacher Report</label>
         <br><br>
         <button class="btn btn-default" onclick="ajaxStopCrawl()">Stop Crawling</button>
@@ -17,11 +17,8 @@
         <br><br>
         <input type="text" class="form-control" placeholder="URL" id="searchURL">
         <button class="btn btn-default" onclick="ajaxSearchURL()">Get Title</button>
-
-        <br><br>On the dashboard, we want the follwing functionality:<br>
-        Clear everything (index/table, queue/pipeline, stop all worker roles)<br>
-        Start crawling (give a root URL, ex: www.cnn.com and kick off worker roles)<br>
-        Retrieve data from index (get page title for specific URL)<br>
+        <br><br>
+        <div name="metrics" id="metrics"></div>
     </div>
     <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>

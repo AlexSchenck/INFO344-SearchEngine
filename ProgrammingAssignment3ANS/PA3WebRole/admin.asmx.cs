@@ -31,7 +31,7 @@ namespace PA3WebRole
         public admin()
         {
             manager = new StorageManager();
-            crawler = WebCrawler.getInstance();
+            crawler = WebCrawler.GetInstance();
 
             cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
             ramCounter = new PerformanceCounter("Memory", "Available MBytes");
@@ -64,7 +64,7 @@ namespace PA3WebRole
             List<string> results = new List<string>();
             
             // State of worker role
-            results.Add(crawler.getStatus());
+            results.Add(crawler.GetStatus());
 
             // CPU utilization %
             results.Add(cpuCounter.NextValue().ToString());
@@ -73,10 +73,10 @@ namespace PA3WebRole
             results.Add(ramCounter.NextValue().ToString());
 
             // # URL's crawled
-            results.Add(crawler.getNumberUrlsCrawled().ToString());
+            results.Add(crawler.GetNumberUrlsCrawled().ToString());
 
             // Last 10 URL's crawled
-            Queue<String> recent = crawler.getRecentUrls();
+            Queue<String> recent = crawler.GetRecentUrls();
             for (int i = 0; i < recent.Count; i++)
             {
                 String temp = recent.Dequeue();
@@ -92,7 +92,7 @@ namespace PA3WebRole
 
             // Any error URL's
 
-            return null; 
+            return results; 
         }
     }
 }

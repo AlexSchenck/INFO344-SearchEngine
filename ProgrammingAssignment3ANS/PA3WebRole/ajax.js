@@ -72,6 +72,14 @@ function ajaxGetStatus()
         dataType: "json",
         success: function (msg) {
             console.log("ajaxGetStatus success");
+
+            var results;
+            results = "Worker role is currently: " + msg.d[0] + "<br>";
+            results += "CPU Utilization Percentage: " + msg.d[1] + "<br>";
+            results += "RAM Available: " + msg.d[2] + "<br>";
+            results += "Total URL's Crawled: " + msg.d[3] + "<br>";
+
+            $("#metrics").html(results);
         },
         error: function (msg) {
             console.log("ajaxGetStatus error");

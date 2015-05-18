@@ -14,13 +14,13 @@ using System.Xml;
 
 namespace StorageLibrary
 {
-    public sealed class WebCrawler
+    public class WebCrawler
     {
         public static string IDLE = "Idle";
         public static string LOADING = "Loading";
         public static string CRAWLING = "Crawling";
 
-        private static WebCrawler instance;
+        public static WebCrawler instance;
 
         private string status;
         private DateTime minimumDate;
@@ -37,7 +37,7 @@ namespace StorageLibrary
             recentUrls = new Queue<string>();
         }
 
-        public static WebCrawler getInstance()
+        public static WebCrawler GetInstance()
         {
             if (instance == null)
             {
@@ -47,25 +47,24 @@ namespace StorageLibrary
             return instance;
         }
 
-        public string getStatus()
+        public String GetStatus()
         {
             return status;
         }
 
-        public int getNumberUrlsCrawled()
+        public int GetNumberUrlsCrawled()
         {
             return urlsCrawled;
         }
 
-        public Queue<String> getRecentUrls()
+        public Queue<String> GetRecentUrls()
         {
             return recentUrls;
         }
 
         public void Load(StorageManager manager, string robotTxt)
         {
-            // CRAWLER LOAD
-            status = WebCrawler.LOADING;
+            status = LOADING;
 
             // Read robots.txt file
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(robotTxt);
@@ -112,16 +111,8 @@ namespace StorageLibrary
                         // XML -- add to load list
                         if (content.EndsWith(".xml"))
                         {
-                            xmlList.Add(content);
-                            Debug.WriteLine("Added " + content + " to XML list");
-                        }
-                        // HTML -- add to crawl list
-                        else if (content.Contains("cnn.com"))
-                        {
                             int validDate = 0;
 
-                            // Check if link is more recent than 2 months
-                            // If no last mod attribute exists, assume link is recent
                             if (xreader.ReadToFollowing("lastmod"))
                             {
                                 urlDate = DateTime.Parse(xreader.ReadElementContentAsString());
@@ -130,9 +121,28 @@ namespace StorageLibrary
 
                             if (validDate >= 0)
                             {
+                                xmlList.Add(content);
+                                Debug.WriteLine("Added " + content + " to XML list");
+                            }
+                        }
+                        // HTML -- add to crawl list
+                        else if (content.Contains("cnn.com"))
+                        {
+                            //int validDate = 0;
+
+                            // Check if link is more recent than 2 months
+                            // If no last mod attribute exists, assume link is recent
+                            if (xreader.ReadToFollowing("lastmod"))
+                            //{
+                                //urlDate = DateTime.Parse(xreader.ReadElementContentAsString());
+                              //  validDate = DateTime.Compare(urlDate, minimumDate);
+                            //}
+
+                            //if (validDate >= 0)
+                            //{
                                 manager.getUrlQueue().AddMessage(new CloudQueueMessage(content));
                                 Debug.WriteLine("Added " + content + " to HTML queue");
-                            }
+                            //}
                         }
                         //}
                     }
@@ -149,6 +159,7 @@ namespace StorageLibrary
         {
             status = WebCrawler.CRAWLING;
             urlsCrawled++;
+            Debug.WriteLine(urlsCrawled + " " + url);
             status = WebCrawler.IDLE;
         }
     }

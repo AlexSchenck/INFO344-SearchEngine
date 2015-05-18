@@ -25,7 +25,7 @@ namespace PA3WorkerRole
             Trace.TraceInformation("PA3WorkerRole is running");
 
             manager = new StorageManager();
-            crawler = WebCrawler.getInstance();
+            crawler = WebCrawler.GetInstance();
 
             try
             {
@@ -84,7 +84,7 @@ namespace PA3WorkerRole
                         manager.getCommandQueue().DeleteMessage(commandMessage);
 
                         // Crawler is idling, start crawl
-                        if (crawler.getStatus().Equals(WebCrawler.IDLE))
+                        if (crawler.GetStatus() == WebCrawler.IDLE)
                         {
                             crawler.Load(manager, fullCommand[1]);
                         }
@@ -92,7 +92,7 @@ namespace PA3WorkerRole
                     // Stop message
                     else if (fullCommand[0].Equals(StorageManager.STOP_MESSAGE))
                     {
-                        String status = crawler.getStatus();
+                        String status = crawler.GetStatus();
 
                         // Crawler is still loading, keep stop message pending
                         if (!status.Equals(WebCrawler.LOADING))
@@ -101,17 +101,14 @@ namespace PA3WorkerRole
 
                             // Crawler is currently crawling
                             // Stop all crawling and clear url queue
-                            if (status.Equals(WebCrawler.CRAWLING))
-                            {
-
-                            }
+                            manager.getUrlQueue().Clear();
                         }
                     }
                 }
-                // No pending message, crawler is not loading and url queue is not empty
+                // No pending command, crawler is not loading and url queue is not empty
                 // Take one url and crawl
                 else if (manager.getQueueSize(manager.getUrlQueue()) != 0
-                    && crawler.getStatus() == WebCrawler.IDLE)
+                    && crawler.GetStatus() == WebCrawler.IDLE)
                 {
                     crawler.crawlURL(manager.getUrlQueue().GetMessage().AsString);
                 }
