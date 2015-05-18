@@ -25,10 +25,16 @@ namespace PA3WebRole
         private static StorageManager manager;
         private static WebCrawler crawler;
 
+        private PerformanceCounter cpuCounter;
+        private PerformanceCounter ramCounter;
+
         public admin()
         {
             manager = new StorageManager();
             crawler = WebCrawler.getInstance();
+
+            cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
+            ramCounter = new PerformanceCounter("Memory", "Available MBytes");
         }
 
         [WebMethod]
@@ -59,17 +65,31 @@ namespace PA3WebRole
             
             // State of worker role
             results.Add(crawler.getStatus());
-            Debug.WriteLine(crawler.getStatus());
 
             // CPU utilization %
+            results.Add(cpuCounter.NextValue().ToString());
+
             // RAM available
+            results.Add(ramCounter.NextValue().ToString());
+
             // # URL's crawled
+            results.Add(crawler.getNumberUrlsCrawled().ToString());
+
             // Last 10 URL's crawled
+            Queue<String> recent = crawler.getRecentUrls();
+            for (int i = 0; i < recent.Count; i++)
+            {
+                String temp = recent.Dequeue();
+                results.Add(temp);
+                recent.Enqueue(temp);
+            }
 
             // Size of queue (number of URL's to be crawled)
-            manager.getQueueSize(manager.getUrlQueue());
+            results.Add(manager.getQueueSize(manager.getUrlQueue()).ToString());
 
             // Size of index (table storage with crawled data)
+            results.Add(manager.getTableSize(manager.getUrlTable()).ToString());
+
             // Any error URL's
 
             return null; 

@@ -108,8 +108,14 @@ namespace PA3WorkerRole
                         }
                     }
                 }
+                // No pending message, crawler is not loading and url queue is not empty
+                // Take one url and crawl
+                else if (manager.getQueueSize(manager.getUrlQueue()) != 0
+                    && crawler.getStatus() == WebCrawler.IDLE)
+                {
+                    crawler.crawlURL(manager.getUrlQueue().GetMessage().AsString);
+                }
 
-                // No command message, continue crawling/loading/idling
                 await Task.Delay(50);
             }
         }

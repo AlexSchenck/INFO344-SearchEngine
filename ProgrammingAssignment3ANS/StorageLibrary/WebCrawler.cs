@@ -24,12 +24,17 @@ namespace StorageLibrary
 
         private string status;
         private DateTime minimumDate;
+        private int urlsCrawled;
+
+        private Queue<string> recentUrls;
 
         // WebCrawler -- singleton instance
         private WebCrawler()
         {
             status = IDLE;
             minimumDate = DateTime.Today.AddMonths(-2);
+            urlsCrawled = 0;
+            recentUrls = new Queue<string>();
         }
 
         public static WebCrawler getInstance()
@@ -47,15 +52,20 @@ namespace StorageLibrary
             return status;
         }
 
-        public void setStatus(string newStatus)
+        public int getNumberUrlsCrawled()
         {
-            status = newStatus;
+            return urlsCrawled;
+        }
+
+        public Queue<String> getRecentUrls()
+        {
+            return recentUrls;
         }
 
         public void Load(StorageManager manager, string robotTxt)
         {
             // CRAWLER LOAD
-            setStatus(WebCrawler.LOADING);
+            status = WebCrawler.LOADING;
 
             // Read robots.txt file
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(robotTxt);
@@ -132,7 +142,14 @@ namespace StorageLibrary
             }
 
             Debug.WriteLine("Loading complete!");
-            setStatus(WebCrawler.IDLE);
+            status = WebCrawler.IDLE;
+        }
+
+        public void crawlURL(string url)
+        {
+            status = WebCrawler.CRAWLING;
+            urlsCrawled++;
+            status = WebCrawler.IDLE;
         }
     }
 }
