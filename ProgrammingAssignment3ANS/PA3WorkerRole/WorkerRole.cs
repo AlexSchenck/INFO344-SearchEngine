@@ -1,19 +1,13 @@
+using Microsoft.WindowsAzure.ServiceRuntime;
+using Microsoft.WindowsAzure.Storage.Queue;
+using StorageLibrary;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
+using System.IO;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.WindowsAzure;
-using Microsoft.WindowsAzure.Diagnostics;
-using Microsoft.WindowsAzure.ServiceRuntime;
-using Microsoft.WindowsAzure.Storage;
-using Microsoft.WindowsAzure.Storage.Table;
-using Microsoft.WindowsAzure.Storage.Queue;
-using System.Configuration;
-using System.IO;
-using StorageLibrary;
 using System.Xml;
 
 namespace PA3WorkerRole
@@ -92,44 +86,7 @@ namespace PA3WorkerRole
                         // Crawler is idling, start crawl
                         if (crawler.getStatus().Equals(WebCrawler.IDLE))
                         {
-                            crawler.setStatus(WebCrawler.LOADING);
-
-                            // Read robots.txt file
-                            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(fullCommand[1]);
-                            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                            Stream resStream = response.GetResponseStream();
-
-                            // Local list of robot.txt's XML files containing URL's to add to queue
-                            List<string> xmlList = new List<string>();
-
-                            using (StreamReader reader = new StreamReader(resStream))
-                            {
-                                string line;
-                                while ((line = reader.ReadLine()) != null)
-                                {
-                                    // Separate all line elements by spaces
-                                    string[] elements = line.Split(new char[] {' '});
-                                    for (int i = 0; i < elements.Length; i++)
-                                    {
-                                        if (elements[i].EndsWith(".xml"))
-                                            xmlList.Add(elements[i]);
-                                    }
-                                }
-                            }
-
-                            // Finish loading
-                            // If xml document is found (within last 2 months), add to xmlList
-                            // If html page is found, add to queue
-                            while (xmlList.Count != 0)
-                            {
-                                using (XmlReader xreader = XmlReader.Create(new StringReader(xmlList[0])))
-                                {
-                                    xreader.ReadToFollowing("loc");
-                                    Debug.WriteLine("ANSANS " + xreader.ReadElementContentAsString());
-                                }
-
-                                xmlList.RemoveAt(0);
-                            }
+                            crawler.Load(manager, fullCommand[1]);
                         }
                     }
                     // Stop message
