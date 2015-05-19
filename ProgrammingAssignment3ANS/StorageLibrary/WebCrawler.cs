@@ -56,7 +56,7 @@ namespace StorageLibrary
                         //Bleacher Report
                         else if (robotTxt == StorageManager.BLEACHER_REPORT_ROBOTS)
                         {
-                            if (elements[i].EndsWith(".xml/nba"))
+                            if (elements[i].EndsWith("nba.xml"))
                             {
                                 xmlList.Add(elements[i]);
                             }
@@ -84,7 +84,7 @@ namespace StorageLibrary
                         int validDate = 0;
 
                         // Link has an associated last modified date
-                        if (xreader.ReadToFollowing("lastmod"))
+                        if (robotTxt != StorageManager.BLEACHER_REPORT_ROBOTS && xreader.ReadToFollowing("lastmod"))
                         {
                             urlDate = DateTime.Parse(xreader.ReadElementContentAsString());
                             validDate = DateTime.Compare(urlDate, minimumDate);
@@ -119,8 +119,9 @@ namespace StorageLibrary
             manager.SetStatus(StorageManager.STATUS_IDLE);
         }
 
-        public void crawlURL(string url)
+        public void crawlURL(StorageManager manager, string url)
         {
+            manager.AddOneToUrlCounter();
         }
     }
 }

@@ -84,7 +84,7 @@ namespace PA3WorkerRole
                         if (manager.GetStatus() == StorageManager.STATUS_IDLE)
                         {
                             crawler.Load(manager, StorageManager.CNN_ROBOTS);
-                            //crawler.Load(manager, StorageManager.BLEACHER_REPORT_ROBOTS);
+                            crawler.Load(manager, StorageManager.BLEACHER_REPORT_ROBOTS);
                         }
                     }
                     // Stop message
@@ -98,6 +98,7 @@ namespace PA3WorkerRole
                             // Crawler is currently crawling
                             // Stop all crawling and clear url queue
                             manager.GetUrlQueue().Clear();
+                            manager.SetStatus(StorageManager.STATUS_IDLE);
                         }
                     }
                 }
@@ -106,7 +107,10 @@ namespace PA3WorkerRole
                 else if (manager.GetQueueSize(manager.GetUrlQueue()) != 0
                     && manager.GetStatus() == StorageManager.STATUS_IDLE)
                 {
-                    crawler.crawlURL(manager.GetUrlQueue().GetMessage().AsString);
+                    CloudQueue q = manager.GetUrlQueue();
+                    CloudQueueMessage url = q.GetMessage();
+                    q.DeleteMessage(url);
+                    crawler.crawlURL(manager, url.AsString);
                 }
 
                 await Task.Delay(50);

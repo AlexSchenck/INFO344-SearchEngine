@@ -70,18 +70,18 @@ namespace PA3WebRole
             results.Add(ramCounter.NextValue().ToString());
 
             // # URL's crawled
-            results.Add(StorageManager.totalUrlsCrawled.ToString());
-
-            // Last 10 URL's crawled
-            List<String> recent = manager.GetRecentUrls();
-            foreach (string s in recent)
-                results.Add(s);
+            results.Add("" + manager.GetTotalUrlsCrawled());
 
             // Size of queue (number of URL's to be crawled)
             results.Add(manager.GetQueueSize(manager.GetUrlQueue()).ToString());
 
             // Size of index (table storage with crawled data)
             results.Add(manager.GetIndexSize().ToString());
+
+            // Last 10 URL's crawled
+            List<String> recent = manager.GetRecentUrls();
+            foreach (string s in recent)
+                results.Add(s);
 
             // Any error URL's
 

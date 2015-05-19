@@ -23,10 +23,9 @@ namespace StorageLibrary
         private static CloudStorageAccount storageAccount;
         private static CloudTable urlTable; // Table with indexed urls with page titles
         private static CloudTable statusTable; // Table with current status of crawler(s)
+        private static CloudTable counterTable; // Table with current number of url's crawled
         private static CloudQueue urlQueue; // Queue with urls yet to be indexed
         private static CloudQueue commandQueue; // Queue with commands for worker role
-
-        public static int totalUrlsCrawled;
 
         public StorageManager()
         {
@@ -40,6 +39,9 @@ namespace StorageLibrary
             statusTable = tableClient.GetTableReference("statustable");
             statusTable.CreateIfNotExists();
 
+            counterTable = tableClient.GetTableReference("counterTable");
+            counterTable.CreateIfNotExists();
+
             CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
             urlQueue = queueClient.GetQueueReference("urlqueue");
             urlQueue.CreateIfNotExists();
@@ -47,9 +49,13 @@ namespace StorageLibrary
             commandQueue = queueClient.GetQueueReference("commandqueue");
             commandQueue.CreateIfNotExists();
 
-            totalUrlsCrawled = 0;
+            TableQuery<StatusItem> query = new TableQuery<StatusItem>();
+            if (statusTable.ExecuteQuery(query).Count() == 0)
+                SetStatus(StorageManager.STATUS_IDLE);
 
-            SetStatus(StorageManager.STATUS_IDLE);
+            TableQuery<UrlCounter> query2 = new TableQuery<UrlCounter>();
+            if (counterTable.ExecuteQuery(query2).Count() == 0)
+                AddOneToUrlCounter();
         }
 
         public CloudTable GetUrlTable()
@@ -71,6 +77,28 @@ namespace StorageLibrary
         {
             TableQuery<IndexURL> query = new TableQuery<IndexURL>();
             return urlTable.ExecuteQuery(query).Count();
+        }
+
+        public int GetTotalUrlsCrawled()
+        {
+            TableQuery<UrlCounter> query = new TableQuery<UrlCounter>().Take(1);
+
+            int result = -1;
+
+            foreach (UrlCounter uc in statusTable.ExecuteQuery(query))
+            {
+                result = uc.Counter;
+            }
+
+            return result;
+        }
+
+        public void AddOneToUrlCounter()
+        {
+            int n = GetTotalUrlsCrawled() + 1;
+            UrlCounter newCounter = new UrlCounter(0, n);
+            TableOperation to = TableOperation.InsertOrReplace(newCounter);
+            counterTable.Execute(to);
         }
 
         public int GetQueueSize(CloudQueue queue)

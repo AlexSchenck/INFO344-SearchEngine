@@ -56,6 +56,10 @@ function ajaxSearchURL()
         dataType: "json",
         success: function (msg) {
             console.log("ajaxSearchURL success");
+
+            var result;
+            result = "Placeholder text";
+            $("#titleSearchResult").html("<br><b>" + result + "</b>");
         },
         error: function (msg) {
             console.log("ajaxSearchURL error");
@@ -74,10 +78,14 @@ function ajaxGetStatus()
             console.log("ajaxGetStatus success");
 
             var results;
-            results = "Worker role is currently: " + msg.d[0] + "<br>";
-            results += "CPU Utilization Percentage: " + msg.d[1] + "<br>";
-            results += "RAM Available: " + msg.d[2] + "<br>";
-            results += "Total URL's Crawled: " + msg.d[3] + "<br>";
+            results = "Worker role is currently: <b>" + msg.d[0] + "</b><br>";
+            results += "CPU Utilization Percentage: <b>" + msg.d[1] + "</b><br>";
+            results += "RAM Available: <b>" + msg.d[2] + "</b><br>";
+            results += "Total URL's Crawled: <b>" + msg.d[3] + "</b><br>";
+            results += "Size of URL Queue: <b>" + msg.d[4] + "</b><br>";
+            results += "Size of Index: <b>" + msg.d[5] + "</b><br>";
+            results += "Last 10 URLs Crawled: <br>";
+            results += "Error URLs: <br>";
 
             $("#metrics").html(results);
         },

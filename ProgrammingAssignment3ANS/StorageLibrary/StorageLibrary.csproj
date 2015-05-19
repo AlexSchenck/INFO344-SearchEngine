@@ -72,6 +72,7 @@
     <Compile Include="StatusItem.cs" />
     <Compile Include="StorageManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UrlCounter.cs" />
     <Compile Include="WebCrawler.cs" />
   </ItemGroup>
   <ItemGroup>
