@@ -23,7 +23,6 @@ namespace PA3WebRole
     public class admin : System.Web.Services.WebService
     {
         private static StorageManager manager;
-        private static WebCrawler crawler;
 
         private PerformanceCounter cpuCounter;
         private PerformanceCounter ramCounter;
@@ -31,7 +30,6 @@ namespace PA3WebRole
         public admin()
         {
             manager = new StorageManager();
-            crawler = WebCrawler.GetInstance();
 
             cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
             ramCounter = new PerformanceCounter("Memory", "Available MBytes");
@@ -40,15 +38,14 @@ namespace PA3WebRole
         [WebMethod]
         public void StartCrawling(string url) 
         {
-            manager.getCommandQueue().AddMessage(
-                new CloudQueueMessage(StorageManager.START_MESSAGE
-                    + " " + url));
+            manager.GetCommandQueue().AddMessage(
+                new CloudQueueMessage(StorageManager.START_MESSAGE));
         }
 
         [WebMethod]
         public void StopCrawling() 
         {
-            manager.getCommandQueue().AddMessage(
+            manager.GetCommandQueue().AddMessage(
                 new CloudQueueMessage(StorageManager.STOP_MESSAGE));
         }
 
@@ -64,7 +61,7 @@ namespace PA3WebRole
             List<string> results = new List<string>();
             
             // State of worker role
-            results.Add(crawler.GetStatus());
+            results.Add(manager.GetStatus());
 
             // CPU utilization %
             results.Add(cpuCounter.NextValue().ToString());
@@ -73,22 +70,18 @@ namespace PA3WebRole
             results.Add(ramCounter.NextValue().ToString());
 
             // # URL's crawled
-            results.Add(crawler.GetNumberUrlsCrawled().ToString());
+            results.Add(StorageManager.totalUrlsCrawled.ToString());
 
             // Last 10 URL's crawled
-            Queue<String> recent = crawler.GetRecentUrls();
-            for (int i = 0; i < recent.Count; i++)
-            {
-                String temp = recent.Dequeue();
-                results.Add(temp);
-                recent.Enqueue(temp);
-            }
+            List<String> recent = manager.GetRecentUrls();
+            foreach (string s in recent)
+                results.Add(s);
 
             // Size of queue (number of URL's to be crawled)
-            results.Add(manager.getQueueSize(manager.getUrlQueue()).ToString());
+            results.Add(manager.GetQueueSize(manager.GetUrlQueue()).ToString());
 
             // Size of index (table storage with crawled data)
-            results.Add(manager.getTableSize(manager.getUrlTable()).ToString());
+            results.Add(manager.GetIndexSize().ToString());
 
             // Any error URL's
 

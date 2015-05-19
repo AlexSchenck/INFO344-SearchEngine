@@ -16,55 +16,17 @@ namespace StorageLibrary
 {
     public class WebCrawler
     {
-        public static string IDLE = "Idle";
-        public static string LOADING = "Loading";
-        public static string CRAWLING = "Crawling";
-
-        public static WebCrawler instance;
-
-        private string status;
         private DateTime minimumDate;
-        private int urlsCrawled;
-
-        private Queue<string> recentUrls;
 
         // WebCrawler -- singleton instance
-        private WebCrawler()
+        public WebCrawler()
         {
-            status = IDLE;
-            minimumDate = DateTime.Today.AddMonths(-2);
-            urlsCrawled = 0;
-            recentUrls = new Queue<string>();
-        }
-
-        public static WebCrawler GetInstance()
-        {
-            if (instance == null)
-            {
-                instance = new WebCrawler();
-            }
-
-            return instance;
-        }
-
-        public String GetStatus()
-        {
-            return status;
-        }
-
-        public int GetNumberUrlsCrawled()
-        {
-            return urlsCrawled;
-        }
-
-        public Queue<String> GetRecentUrls()
-        {
-            return recentUrls;
+            minimumDate = new DateTime(2015, 4, 1);
         }
 
         public void Load(StorageManager manager, string robotTxt)
         {
-            status = LOADING;
+            manager.SetStatus(StorageManager.STATUS_LOADING);
 
             // Read robots.txt file
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(robotTxt);
@@ -83,8 +45,22 @@ namespace StorageLibrary
                     string[] elements = line.Split(new char[] { ' ' });
                     for (int i = 0; i < elements.Length; i++)
                     {
-                        if (elements[i].EndsWith(".xml"))
-                            xmlList.Add(elements[i]);
+                        //CNN
+                        if (robotTxt == StorageManager.CNN_ROBOTS)
+                        {
+                            if (elements[i].EndsWith(".xml"))
+                            {
+                                xmlList.Add(elements[i]);
+                            }
+                        }
+                        //Bleacher Report
+                        else if (robotTxt == StorageManager.BLEACHER_REPORT_ROBOTS)
+                        {
+                            if (elements[i].EndsWith(".xml/nba"))
+                            {
+                                xmlList.Add(elements[i]);
+                            }
+                        }
                     }
                 }
             }
@@ -98,69 +74,53 @@ namespace StorageLibrary
                 xDoc.Load(xmlList[0]);
                 String xml = xDoc.InnerXml;
 
-                DateTime urlDate;
-
                 using (XmlReader xreader = XmlReader.Create(new StringReader(xml)))
                 {
                     while (xreader.ReadToFollowing("loc"))
                     {
                         string content = xreader.ReadElementContentAsString();
 
-                        //if (validDate >= 0)
-                        //{
-                        // XML -- add to load list
-                        if (content.EndsWith(".xml"))
+                        DateTime urlDate;
+                        int validDate = 0;
+
+                        // Link has an associated last modified date
+                        if (xreader.ReadToFollowing("lastmod"))
                         {
-                            int validDate = 0;
+                            urlDate = DateTime.Parse(xreader.ReadElementContentAsString());
+                            validDate = DateTime.Compare(urlDate, minimumDate);
+                        }
 
-                            if (xreader.ReadToFollowing("lastmod"))
-                            {
-                                urlDate = DateTime.Parse(xreader.ReadElementContentAsString());
-                                validDate = DateTime.Compare(urlDate, minimumDate);
-                            }
-
-                            if (validDate >= 0)
+                        if (validDate >= 0)
+                        {
+                            // XML -- add to load list
+                            if (content.EndsWith(".xml"))
                             {
                                 xmlList.Add(content);
-                                Debug.WriteLine("Added " + content + " to XML list");
+                                Debug.WriteLine("Loaded " + content);
+                            }
+                            // HTML -- add to crawl list
+                            else if (content.Contains("cnn") || content.Contains("bleacherreport"))
+                            {
+                                manager.GetUrlQueue().AddMessage(new CloudQueueMessage(content));
+                                Debug.WriteLine("Loaded " + content);
                             }
                         }
-                        // HTML -- add to crawl list
-                        else if (content.Contains("cnn.com"))
+                        else
                         {
-                            //int validDate = 0;
-
-                            // Check if link is more recent than 2 months
-                            // If no last mod attribute exists, assume link is recent
-                            if (xreader.ReadToFollowing("lastmod"))
-                            //{
-                                //urlDate = DateTime.Parse(xreader.ReadElementContentAsString());
-                              //  validDate = DateTime.Compare(urlDate, minimumDate);
-                            //}
-
-                            //if (validDate >= 0)
-                            //{
-                                manager.getUrlQueue().AddMessage(new CloudQueueMessage(content));
-                                Debug.WriteLine("Added " + content + " to HTML queue");
-                            //}
+                            Debug.WriteLine(content + " did not pass date check");
                         }
-                        //}
                     }
                 }
 
                 xmlList.RemoveAt(0);
             }
-
+            
             Debug.WriteLine("Loading complete!");
-            status = WebCrawler.IDLE;
+            manager.SetStatus(StorageManager.STATUS_IDLE);
         }
 
         public void crawlURL(string url)
         {
-            status = WebCrawler.CRAWLING;
-            urlsCrawled++;
-            Debug.WriteLine(urlsCrawled + " " + url);
-            status = WebCrawler.IDLE;
         }
     }
 }

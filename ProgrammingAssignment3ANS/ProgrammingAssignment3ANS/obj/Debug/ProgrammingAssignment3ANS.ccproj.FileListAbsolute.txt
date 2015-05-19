@@ -212,3 +212,4 @@ C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignme
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\obj\Debug\PA3WorkerRole\zh-Hant\Microsoft.Data.OData.resources.dll
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\obj\Debug\PA3WorkerRole\zh-Hant\Microsoft.Data.Services.Client.resources.dll
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\obj\Debug\PA3WorkerRole\zh-Hant\System.Spatial.resources.dll
+C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\obj\Debug\PA3WebRole\bin\HtmlAgilityPack.dll

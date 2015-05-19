@@ -25,7 +25,7 @@ namespace PA3WorkerRole
             Trace.TraceInformation("PA3WorkerRole is running");
 
             manager = new StorageManager();
-            crawler = WebCrawler.GetInstance();
+            crawler = new WebCrawler();
 
             try
             {
@@ -69,48 +69,44 @@ namespace PA3WorkerRole
             while (!cancellationToken.IsCancellationRequested)
             {
                 // Read from command queue every 50ms
-                CloudQueueMessage commandMessage = manager.getCommandQueue().GetMessage();
+                CloudQueueMessage commandMessage = manager.GetCommandQueue().GetMessage();
 
                 // Non-empty message
                 if (commandMessage != null)
                 {
-                    // If message is in an unrecognized format, do nothing
-                    string[] fullCommand = commandMessage.AsString.Split(new char[]{' '});
-
                     // Start message
-                    if (fullCommand[0].Equals(StorageManager.START_MESSAGE))
+                    if (commandMessage.AsString.Equals(StorageManager.START_MESSAGE))
                     {
                         // Always remove from queue
-                        manager.getCommandQueue().DeleteMessage(commandMessage);
+                        manager.GetCommandQueue().DeleteMessage(commandMessage);
 
                         // Crawler is idling, start crawl
-                        if (crawler.GetStatus() == WebCrawler.IDLE)
+                        if (manager.GetStatus() == StorageManager.STATUS_IDLE)
                         {
-                            crawler.Load(manager, fullCommand[1]);
+                            crawler.Load(manager, StorageManager.CNN_ROBOTS);
+                            //crawler.Load(manager, StorageManager.BLEACHER_REPORT_ROBOTS);
                         }
                     }
                     // Stop message
-                    else if (fullCommand[0].Equals(StorageManager.STOP_MESSAGE))
+                    else if (commandMessage.AsString.Equals(StorageManager.STOP_MESSAGE))
                     {
-                        String status = crawler.GetStatus();
-
                         // Crawler is still loading, keep stop message pending
-                        if (!status.Equals(WebCrawler.LOADING))
+                        if (manager.GetStatus() != StorageManager.STATUS_LOADING)
                         {
-                            manager.getCommandQueue().DeleteMessage(commandMessage);
+                            manager.GetCommandQueue().DeleteMessage(commandMessage);
 
                             // Crawler is currently crawling
                             // Stop all crawling and clear url queue
-                            manager.getUrlQueue().Clear();
+                            manager.GetUrlQueue().Clear();
                         }
                     }
                 }
                 // No pending command, crawler is not loading and url queue is not empty
                 // Take one url and crawl
-                else if (manager.getQueueSize(manager.getUrlQueue()) != 0
-                    && crawler.GetStatus() == WebCrawler.IDLE)
+                else if (manager.GetQueueSize(manager.GetUrlQueue()) != 0
+                    && manager.GetStatus() == StorageManager.STATUS_IDLE)
                 {
-                    crawler.crawlURL(manager.getUrlQueue().GetMessage().AsString);
+                    crawler.crawlURL(manager.GetUrlQueue().GetMessage().AsString);
                 }
 
                 await Task.Delay(50);
