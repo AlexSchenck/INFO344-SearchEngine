@@ -56,7 +56,10 @@ namespace PA3WebRole
         }
 
         [WebMethod]
-        public string GetPageTitle(string url) { return null; }
+        public string GetPageTitle(string url) 
+        { 
+            return manager.GetPageTitle(url); 
+        }
 
         [WebMethod]
         public List<string> GetStatus() 
@@ -82,9 +85,10 @@ namespace PA3WebRole
             results.Add(manager.GetIndexSize().ToString());
 
             // Last 10 URL's crawled
-            List<String> recent = manager.GetRecentUrls();
-            foreach (string s in recent)
-                results.Add(s);
+            string sumString = "";
+            foreach (string s in manager.GetRecentUrls())
+                sumString += s + " ";
+            results.Add(sumString);
 
             // Any error URL's
 

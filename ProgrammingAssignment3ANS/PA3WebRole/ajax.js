@@ -46,7 +46,7 @@ function ajaxClearIndex()
 
 function ajaxSearchURL()
 {
-    var url = $("searchURL").val();
+    var url = $("#searchURL").val();
 
     $.ajax({
         type: "POST",
@@ -57,9 +57,8 @@ function ajaxSearchURL()
         success: function (msg) {
             console.log("ajaxSearchURL success");
 
-            var result;
-            result = "Placeholder text";
-            $("#titleSearchResult").html("<br><b>" + result + "</b>");
+            var result = "Page Title: ";
+            $("#titleSearchResult").html("<br>" + result + "<b>" + msg.d + "</b>");
         },
         error: function (msg) {
             console.log("ajaxSearchURL error");
@@ -84,8 +83,15 @@ function ajaxGetStatus()
             results += "Total URL's Crawled: <b>" + msg.d[3] + "</b><br>";
             results += "Size of URL Queue: <b>" + msg.d[4] + "</b><br>";
             results += "Size of Index: <b>" + msg.d[5] + "</b><br>";
-            results += "Last 10 URLs Crawled: <br>";
-            results += "Error URLs: <br>";
+            results += "Last 10 URLs Crawled: <br><b>";
+
+            var recentUrls = msg.d[6].split(" ");
+            for (var i = 0; i < recentUrls.length; i++)
+            {
+                results += recentUrls[i] + "<br>";
+            }
+
+            results += "</b>Error URLs: <br>";
 
             $("#metrics").html(results);
         },

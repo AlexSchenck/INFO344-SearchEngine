@@ -82,6 +82,21 @@ namespace StorageLibrary
             urlTable.DeleteIfExists();
         }
 
+        public string GetPageTitle(string url)
+        {
+            string result = "";
+
+            TableQuery<IndexURL> tq = new TableQuery<IndexURL>()
+                .Where(TableQuery.GenerateFilterCondition("URL", QueryComparisons.Equal, url));
+
+            foreach (IndexURL iu in urlTable.ExecuteQuery(tq))
+            {
+                result = iu.Title;
+            }
+
+            return result;
+        }
+
         public int GetTotalUrlsCrawled()
         {
             int indexNum = GetIndexSize();
@@ -104,7 +119,7 @@ namespace StorageLibrary
 
             foreach (IndexURL iu in urlTable.ExecuteQuery(query))
             {
-                result.Add(iu.PartitionKey);
+                result.Add(iu.URL);
             }
 
             return result;
