@@ -7,25 +7,21 @@ using System.Threading.Tasks;
 
 namespace StorageLibrary
 {
-    public class IndexURL : TableEntity
+    public class ErrorItem : TableEntity
     {
-        public IndexURL(string url, string title, string date)
+        public ErrorItem(string url, string error)
         {
             this.PartitionKey = Guid.NewGuid().ToString();
             this.RowKey = Guid.NewGuid().ToString();
 
             this.URL = url;
-            this.Title = title;
-            this.Date = date;
+            this.Error = error;
         }
 
-        public IndexURL() { }
+        public ErrorItem() { }
 
         public string URL { get; set; }
 
-        public string Title { get; set; }
-
-        public string Date { get; set; }
+        public string Error {get; set; }
     }
 }
- 

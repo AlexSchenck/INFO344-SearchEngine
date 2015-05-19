@@ -50,7 +50,10 @@ namespace PA3WebRole
         }
 
         [WebMethod]
-        public void ClearIndex() { }
+        public void ClearIndex() 
+        {
+            manager.ClearIndex();
+        }
 
         [WebMethod]
         public string GetPageTitle(string url) { return null; }

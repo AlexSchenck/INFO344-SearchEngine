@@ -1,4 +1,5 @@
-﻿using Microsoft.WindowsAzure.Storage;
+﻿using HtmlAgilityPack;
+using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Queue;
 using Microsoft.WindowsAzure.Storage.Table;
 using System;
@@ -121,7 +122,26 @@ namespace StorageLibrary
 
         public void crawlURL(StorageManager manager, string url)
         {
-            manager.AddOneToUrlCounter();
+            manager.SetStatus(StorageManager.STATUS_CRAWLING);
+
+            HtmlDocument htmlPage = new HtmlWeb().Load(url);
+            var title = htmlPage.DocumentNode.SelectSingleNode("//head/title");
+            string pageTitle = title.InnerText;
+            string date = "";
+
+            try
+            {
+                var mod = htmlPage.DocumentNode.SelectSingleNode(".//meta[@name='lastmod']");
+                string modDateNode = mod.OuterHtml;
+                date = modDateNode.Split(new char[] {'"'})[1];
+            }
+            catch(System.NullReferenceException) {}
+
+            IndexURL newUrl = new IndexURL(url, pageTitle, date);
+            TableOperation to = TableOperation.Insert(newUrl);
+            manager.GetUrlTable().Execute(to);
+
+            manager.SetStatus(StorageManager.STATUS_IDLE);
         }
     }
 }

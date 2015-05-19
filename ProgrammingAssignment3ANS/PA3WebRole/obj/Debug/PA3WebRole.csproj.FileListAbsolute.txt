@@ -56,7 +56,6 @@ c:\users\alex\documents\visual studio 2013\Projects\ProgrammingAssignment3ANS\PA
 c:\users\alex\documents\visual studio 2013\Projects\ProgrammingAssignment3ANS\PA3WebRole\obj\Debug\PA3WebRole.csprojResolveAssemblyReference.cache
 c:\users\alex\documents\visual studio 2013\Projects\ProgrammingAssignment3ANS\PA3WebRole\obj\Debug\PA3WebRole.dll
 c:\users\alex\documents\visual studio 2013\Projects\ProgrammingAssignment3ANS\PA3WebRole\obj\Debug\PA3WebRole.pdb
-C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WebRole\obj\Debug\PA3WebRole.csprojResolveAssemblyReference.cache
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WebRole\bin\PA3WebRole.dll.config
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WebRole\bin\PA3WebRole.dll
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WebRole\bin\PA3WebRole.pdb
@@ -69,6 +68,7 @@ C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignme
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WebRole\bin\Newtonsoft.Json.dll
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WebRole\bin\StorageLibrary.dll
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WebRole\bin\System.Spatial.dll
+C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WebRole\bin\HtmlAgilityPack.dll
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WebRole\bin\MonAgentListener.dll
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WebRole\bin\StorageLibrary.pdb
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WebRole\bin\Microsoft.Data.Edm.xml
@@ -78,6 +78,8 @@ C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignme
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WebRole\bin\Microsoft.WindowsAzure.Storage.xml
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WebRole\bin\Newtonsoft.Json.xml
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WebRole\bin\System.Spatial.xml
+C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WebRole\bin\HtmlAgilityPack.pdb
+C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WebRole\bin\HtmlAgilityPack.xml
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WebRole\bin\de\Microsoft.Data.Edm.resources.dll
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WebRole\bin\es\Microsoft.Data.Edm.resources.dll
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WebRole\bin\fr\Microsoft.Data.Edm.resources.dll
@@ -114,5 +116,6 @@ C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignme
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WebRole\bin\ru\System.Spatial.resources.dll
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WebRole\bin\zh-Hans\System.Spatial.resources.dll
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WebRole\bin\zh-Hant\System.Spatial.resources.dll
+C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WebRole\obj\Debug\PA3WebRole.csprojResolveAssemblyReference.cache
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WebRole\obj\Debug\PA3WebRole.dll
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WebRole\obj\Debug\PA3WebRole.pdb

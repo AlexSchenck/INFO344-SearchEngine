@@ -17,13 +17,15 @@ namespace StorageLibrary
         public static string STATUS_IDLE = "Idle";
         public static string STATUS_LOADING = "Loading";
         public static string STATUS_CRAWLING = "Crawling";
+        public static string ERROR_DUPLICATE = "Duplicate URL";
+        public static string ERROR_404 = "URL 404";
         public static string CNN_ROBOTS = "http://www.cnn.com/robots.txt";
         public static string BLEACHER_REPORT_ROBOTS = "http://bleacherreport.com/robots.txt";
 
         private static CloudStorageAccount storageAccount;
         private static CloudTable urlTable; // Table with indexed urls with page titles
         private static CloudTable statusTable; // Table with current status of crawler(s)
-        private static CloudTable counterTable; // Table with current number of url's crawled
+        private static CloudTable errorTable; // Table containing list of error urls with specific reasons
         private static CloudQueue urlQueue; // Queue with urls yet to be indexed
         private static CloudQueue commandQueue; // Queue with commands for worker role
 
@@ -39,8 +41,8 @@ namespace StorageLibrary
             statusTable = tableClient.GetTableReference("statustable");
             statusTable.CreateIfNotExists();
 
-            counterTable = tableClient.GetTableReference("counterTable");
-            counterTable.CreateIfNotExists();
+            errorTable = tableClient.GetTableReference("errorTable");
+            errorTable.CreateIfNotExists();
 
             CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
             urlQueue = queueClient.GetQueueReference("urlqueue");
@@ -52,10 +54,6 @@ namespace StorageLibrary
             TableQuery<StatusItem> query = new TableQuery<StatusItem>();
             if (statusTable.ExecuteQuery(query).Count() == 0)
                 SetStatus(StorageManager.STATUS_IDLE);
-
-            TableQuery<UrlCounter> query2 = new TableQuery<UrlCounter>();
-            if (counterTable.ExecuteQuery(query2).Count() == 0)
-                AddOneToUrlCounter();
         }
 
         public CloudTable GetUrlTable()
@@ -79,26 +77,18 @@ namespace StorageLibrary
             return urlTable.ExecuteQuery(query).Count();
         }
 
-        public int GetTotalUrlsCrawled()
+        public void ClearIndex()
         {
-            TableQuery<UrlCounter> query = new TableQuery<UrlCounter>().Take(1);
-
-            int result = -1;
-
-            foreach (UrlCounter uc in statusTable.ExecuteQuery(query))
-            {
-                result = uc.Counter;
-            }
-
-            return result;
+            urlTable.DeleteIfExists();
         }
 
-        public void AddOneToUrlCounter()
+        public int GetTotalUrlsCrawled()
         {
-            int n = GetTotalUrlsCrawled() + 1;
-            UrlCounter newCounter = new UrlCounter(0, n);
-            TableOperation to = TableOperation.InsertOrReplace(newCounter);
-            counterTable.Execute(to);
+            int indexNum = GetIndexSize();
+            TableQuery<ErrorItem> query = new TableQuery<ErrorItem>();
+            int errorNum = errorTable.ExecuteQuery(query).Count();
+
+            return indexNum + errorNum;
         }
 
         public int GetQueueSize(CloudQueue queue)

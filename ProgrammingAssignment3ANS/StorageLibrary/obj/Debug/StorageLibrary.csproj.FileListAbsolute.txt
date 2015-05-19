@@ -1,7 +1,7 @@
-C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\StorageLibrary\obj\Debug\StorageLibrary.csprojResolveAssemblyReference.cache
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\StorageLibrary\bin\Debug\StorageLibrary.dll.config
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\StorageLibrary\bin\Debug\StorageLibrary.dll
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\StorageLibrary\bin\Debug\StorageLibrary.pdb
+C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\StorageLibrary\bin\Debug\HtmlAgilityPack.dll
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\StorageLibrary\bin\Debug\Microsoft.Data.Edm.dll
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\StorageLibrary\bin\Debug\Microsoft.Data.OData.dll
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\StorageLibrary\bin\Debug\Microsoft.Data.Services.Client.dll
@@ -9,6 +9,8 @@ C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignme
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\StorageLibrary\bin\Debug\Microsoft.WindowsAzure.Storage.dll
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\StorageLibrary\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\StorageLibrary\bin\Debug\System.Spatial.dll
+C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\StorageLibrary\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\StorageLibrary\bin\Debug\HtmlAgilityPack.xml
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\StorageLibrary\bin\Debug\Microsoft.Data.Edm.xml
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\StorageLibrary\bin\Debug\Microsoft.Data.OData.xml
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\StorageLibrary\bin\Debug\Microsoft.Data.Services.Client.xml
@@ -53,6 +55,3 @@ C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignme
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\StorageLibrary\bin\Debug\zh-Hant\System.Spatial.resources.dll
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\StorageLibrary\obj\Debug\StorageLibrary.dll
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\StorageLibrary\obj\Debug\StorageLibrary.pdb
-C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\StorageLibrary\bin\Debug\HtmlAgilityPack.dll
-C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\StorageLibrary\bin\Debug\HtmlAgilityPack.pdb
-C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\StorageLibrary\bin\Debug\HtmlAgilityPack.xml

@@ -117,6 +117,9 @@ C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignme
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\obj\Debug\PA3WebRole\bin\fr\Microsoft.Data.OData.resources.dll
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\obj\Debug\PA3WebRole\bin\fr\Microsoft.Data.Services.Client.resources.dll
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\obj\Debug\PA3WebRole\bin\fr\System.Spatial.resources.dll
+C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\obj\Debug\PA3WebRole\bin\HtmlAgilityPack.dll
+C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\obj\Debug\PA3WebRole\bin\HtmlAgilityPack.pdb
+C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\obj\Debug\PA3WebRole\bin\HtmlAgilityPack.xml
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\obj\Debug\PA3WebRole\bin\it\Microsoft.Data.Edm.resources.dll
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\obj\Debug\PA3WebRole\bin\it\Microsoft.Data.OData.resources.dll
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\obj\Debug\PA3WebRole\bin\it\Microsoft.Data.Services.Client.resources.dll
@@ -174,6 +177,8 @@ C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignme
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\obj\Debug\PA3WorkerRole\fr\Microsoft.Data.OData.resources.dll
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\obj\Debug\PA3WorkerRole\fr\Microsoft.Data.Services.Client.resources.dll
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\obj\Debug\PA3WorkerRole\fr\System.Spatial.resources.dll
+C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\obj\Debug\PA3WorkerRole\HtmlAgilityPack.dll
+C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\obj\Debug\PA3WorkerRole\HtmlAgilityPack.pdb
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\obj\Debug\PA3WorkerRole\it\Microsoft.Data.Edm.resources.dll
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\obj\Debug\PA3WorkerRole\it\Microsoft.Data.OData.resources.dll
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\obj\Debug\PA3WorkerRole\it\Microsoft.Data.Services.Client.resources.dll
@@ -212,4 +217,3 @@ C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignme
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\obj\Debug\PA3WorkerRole\zh-Hant\Microsoft.Data.OData.resources.dll
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\obj\Debug\PA3WorkerRole\zh-Hant\Microsoft.Data.Services.Client.resources.dll
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\obj\Debug\PA3WorkerRole\zh-Hant\System.Spatial.resources.dll
-C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\obj\Debug\PA3WebRole\bin\HtmlAgilityPack.dll
