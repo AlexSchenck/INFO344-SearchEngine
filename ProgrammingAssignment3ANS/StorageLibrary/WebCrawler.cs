@@ -124,22 +124,34 @@ namespace StorageLibrary
         {
             manager.SetStatus(StorageManager.STATUS_CRAWLING);
 
-            HtmlDocument htmlPage = new HtmlWeb().Load(url);
-            var title = htmlPage.DocumentNode.SelectSingleNode("//head/title");
-            string pageTitle = title.InnerText;
-            string date = "";
-
-            try
+            if (!manager.ContainsIndexUrl(url))
             {
-                var mod = htmlPage.DocumentNode.SelectSingleNode(".//meta[@name='lastmod']");
-                string modDateNode = mod.OuterHtml;
-                date = modDateNode.Split(new char[] {'"'})[1];
-            }
-            catch(System.NullReferenceException) {}
+                HtmlDocument htmlPage = new HtmlWeb().Load(url);
+                var title = htmlPage.DocumentNode.SelectSingleNode("//head/title");
+                string pageTitle = title.InnerText;
+                string date = "";
 
-            IndexURL newUrl = new IndexURL(url, pageTitle, date);
-            TableOperation to = TableOperation.Insert(newUrl);
-            manager.GetUrlTable().Execute(to);
+                try
+                {
+                    var mod = htmlPage.DocumentNode.SelectSingleNode(".//meta[@name='lastmod']");
+                    string modDateNode = mod.OuterHtml;
+                    date = modDateNode.Split(new char[] { '"' })[1];
+                }
+                catch (System.NullReferenceException) { }
+
+                int index = manager.GetIndexSize();
+                IndexURL newUrl = new IndexURL(url, pageTitle, date, index);
+                TableOperation to = TableOperation.Insert(newUrl);
+                manager.GetUrlTable().Execute(to);
+            }
+            else
+            {
+                // Duplicate URL, add to error table
+                Debug.WriteLine("URL Error! " + url + " is a duplicate.");
+                ErrorItem newError = new ErrorItem(url, StorageManager.ERROR_DUPLICATE);
+                TableOperation to = TableOperation.Insert(newError);
+                manager.GetErrorTable().Execute(to);
+            }
 
             manager.SetStatus(StorageManager.STATUS_IDLE);
         }

@@ -24,15 +24,9 @@ namespace PA3WebRole
     {
         private static StorageManager manager;
 
-        private PerformanceCounter cpuCounter;
-        private PerformanceCounter ramCounter;
-
         public admin()
         {
             manager = new StorageManager();
-
-            cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
-            ramCounter = new PerformanceCounter("Memory", "Available MBytes");
         }
 
         [WebMethod]
@@ -70,10 +64,10 @@ namespace PA3WebRole
             results.Add(manager.GetStatus());
 
             // CPU utilization %
-            results.Add(cpuCounter.NextValue().ToString());
+            results.Add(manager.GetPerformanceCounter(StorageManager.CPU_COUNTER));
 
             // RAM available
-            results.Add(ramCounter.NextValue().ToString());
+            results.Add(manager.GetPerformanceCounter(StorageManager.RAM_COUNTER));
 
             // # URL's crawled
             results.Add("" + manager.GetTotalUrlsCrawled());

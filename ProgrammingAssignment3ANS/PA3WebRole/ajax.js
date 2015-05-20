@@ -82,7 +82,7 @@ function ajaxGetStatus()
             results += "RAM Available: <b>" + msg.d[2] + "</b><br>";
             results += "Total URL's Crawled: <b>" + msg.d[3] + "</b><br>";
             results += "Size of URL Queue: <b>" + msg.d[4] + "</b><br>";
-            results += "Size of Index: <b>" + msg.d[5] + "</b><br>";
+            results += "Size of Index: <b>" + msg.d[5] + "</b><br><br>";
             results += "Last 10 URLs Crawled: <br><b>";
 
             var recentUrls = msg.d[6].split(" ");

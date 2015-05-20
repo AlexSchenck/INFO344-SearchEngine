@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace StorageLibrary
 {
-    class StatusItem : TableEntity
+    public class StatusItem : TableEntity
     {
         public StatusItem(int crawlerID, string status)
         {

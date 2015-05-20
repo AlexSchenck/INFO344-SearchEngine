@@ -19,6 +19,8 @@ namespace StorageLibrary
         public static string STATUS_CRAWLING = "Crawling";
         public static string ERROR_DUPLICATE = "Duplicate URL";
         public static string ERROR_404 = "URL 404";
+        public static int CPU_COUNTER = 1;
+        public static int RAM_COUNTER = 2;
         public static string CNN_ROBOTS = "http://www.cnn.com/robots.txt";
         public static string BLEACHER_REPORT_ROBOTS = "http://bleacherreport.com/robots.txt";
 
@@ -26,6 +28,7 @@ namespace StorageLibrary
         private static CloudTable urlTable; // Table with indexed urls with page titles
         private static CloudTable statusTable; // Table with current status of crawler(s)
         private static CloudTable errorTable; // Table containing list of error urls with specific reasons
+        private static CloudTable performanceTable; // Table containing worker role performance information
         private static CloudQueue urlQueue; // Queue with urls yet to be indexed
         private static CloudQueue commandQueue; // Queue with commands for worker role
 
@@ -41,8 +44,11 @@ namespace StorageLibrary
             statusTable = tableClient.GetTableReference("statustable");
             statusTable.CreateIfNotExists();
 
-            errorTable = tableClient.GetTableReference("errorTable");
+            errorTable = tableClient.GetTableReference("errortable");
             errorTable.CreateIfNotExists();
+
+            performanceTable = tableClient.GetTableReference("performancetable");
+            performanceTable.CreateIfNotExists();
 
             CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
             urlQueue = queueClient.GetQueueReference("urlqueue");
@@ -59,6 +65,16 @@ namespace StorageLibrary
         public CloudTable GetUrlTable()
         {
             return urlTable;
+        }
+
+        public CloudTable GetErrorTable()
+        {
+            return errorTable;
+        }
+
+        public CloudTable GetPerformanceTable()
+        {
+            return performanceTable;
         }
 
         public CloudQueue GetUrlQueue()
@@ -115,7 +131,9 @@ namespace StorageLibrary
         public List<String> GetRecentUrls()
         {
             List<string> result = new List<string>();
-            TableQuery<IndexURL> query = new TableQuery<IndexURL>().Take(10);
+            int indexSize = GetIndexSize();
+            TableQuery<IndexURL> query = new TableQuery<IndexURL>()
+                .Where(TableQuery.GenerateFilterConditionForInt("Index", QueryComparisons.GreaterThan, indexSize - 10));
 
             foreach (IndexURL iu in urlTable.ExecuteQuery(query))
             {
@@ -144,6 +162,29 @@ namespace StorageLibrary
             StatusItem newStatusItem = new StatusItem(0, newStatus);
             TableOperation to = TableOperation.InsertOrReplace(newStatusItem);
             statusTable.Execute(to);
+        }
+
+        public string GetPerformanceCounter(int counterId)
+        {
+            TableQuery<PerformanceItem> query = new TableQuery<PerformanceItem>()
+                .Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, "" + counterId));
+
+            String result = "";
+
+            foreach (PerformanceItem pi in performanceTable.ExecuteQuery(query))
+            {
+                result = pi.Value;
+            }
+
+            return result;
+        }
+
+        public bool ContainsIndexUrl(string url)
+        {
+            TableQuery<IndexURL> query = new TableQuery<IndexURL>()
+                .Where(TableQuery.GenerateFilterCondition("URL", QueryComparisons.Equal, url));
+
+            return urlTable.ExecuteQuery(query).Count() > 0;
         }
     }
 }

@@ -9,7 +9,7 @@ namespace StorageLibrary
 {
     public class IndexURL : TableEntity
     {
-        public IndexURL(string url, string title, string date)
+        public IndexURL(string url, string title, string date, int index)
         {
             this.PartitionKey = Guid.NewGuid().ToString();
             this.RowKey = Guid.NewGuid().ToString();
@@ -17,6 +17,7 @@ namespace StorageLibrary
             this.URL = url;
             this.Title = title;
             this.Date = date;
+            this.Index = index;
         }
 
         public IndexURL() { }
@@ -26,6 +27,8 @@ namespace StorageLibrary
         public string Title { get; set; }
 
         public string Date { get; set; }
+
+        public int Index { get; set; }
     }
 }
  

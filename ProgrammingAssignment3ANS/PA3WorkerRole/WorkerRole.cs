@@ -1,5 +1,6 @@
 using Microsoft.WindowsAzure.ServiceRuntime;
 using Microsoft.WindowsAzure.Storage.Queue;
+using Microsoft.WindowsAzure.Storage.Table;
 using StorageLibrary;
 using System;
 using System.Collections.Generic;
@@ -20,12 +21,21 @@ namespace PA3WorkerRole
         private static StorageManager manager;
         private static WebCrawler crawler;
 
+        private PerformanceCounter cpuCounter;
+        private PerformanceCounter ramCounter;
+        private int waitIteration;
+        private static int performanceCheckInterval = 5;
+
         public override void Run()
         {
             Trace.TraceInformation("PA3WorkerRole is running");
 
             manager = new StorageManager();
             crawler = new WebCrawler();
+
+            cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
+            ramCounter = new PerformanceCounter("Memory", "Available MBytes");
+            waitIteration = 0;
 
             try
             {
@@ -68,6 +78,29 @@ namespace PA3WorkerRole
         {
             while (!cancellationToken.IsCancellationRequested)
             {
+                // Store performance information every 500ms
+                if (waitIteration == 0)
+                {
+                    string cpu = cpuCounter.NextValue().ToString();
+                    string ram = ramCounter.NextValue().ToString();
+
+                    PerformanceItem perf = new PerformanceItem(StorageManager.CPU_COUNTER, cpu);
+                    TableOperation to = TableOperation.InsertOrReplace(perf);
+                    manager.GetPerformanceTable().Execute(to);
+
+                    PerformanceItem perf2 = new PerformanceItem(StorageManager.RAM_COUNTER, ram);
+                    TableOperation to2 = TableOperation.InsertOrReplace(perf2);
+                    manager.GetPerformanceTable().Execute(to2);
+                }
+                else if (waitIteration == performanceCheckInterval)
+                {
+                    waitIteration = 0;
+                }
+                else
+                {
+                    waitIteration++;
+                }
+
                 // Read from command queue every 50ms
                 CloudQueueMessage commandMessage = manager.GetCommandQueue().GetMessage();
 
