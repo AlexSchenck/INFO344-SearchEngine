@@ -19,6 +19,7 @@ namespace StorageLibrary
         public static string STATUS_CRAWLING = "Crawling";
         public static string ERROR_DUPLICATE = "Duplicate URL";
         public static string ERROR_404 = "URL 404";
+        public static string ERROR_NON_VALID_WEBSITE = "Non-Valid Website";
         public static int CPU_COUNTER = 1;
         public static int RAM_COUNTER = 2;
         public static string CNN_ROBOTS = "http://www.cnn.com/robots.txt";
@@ -146,7 +147,7 @@ namespace StorageLibrary
         public List<string> GetErrors()
         {
             List<string> result = new List<string>();
-            TableQuery<ErrorItem> query = new TableQuery<ErrorItem>();
+            TableQuery<ErrorItem> query = new TableQuery<ErrorItem>().Take(30);
 
             foreach (ErrorItem ei in errorTable.ExecuteQuery(query))
             {

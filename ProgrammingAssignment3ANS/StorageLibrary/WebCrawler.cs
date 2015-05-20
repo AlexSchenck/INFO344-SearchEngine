@@ -133,6 +133,7 @@ namespace StorageLibrary
                     string pageTitle = title.InnerText;
                     if (pageTitle.Equals("Error"))
                     {
+                        Debug.WriteLine("URL Error! " + url + " 404'd.");
                         ErrorItem error = new ErrorItem(url, StorageManager.ERROR_404);
                         TableOperation to = TableOperation.Insert(error);
                         manager.GetErrorTable().Execute(to);
@@ -157,10 +158,20 @@ namespace StorageLibrary
                         foreach (HtmlNode hn in htmlPage.DocumentNode.SelectNodes("//a"))
                         {
                             string href = hn.GetAttributeValue("href", string.Empty);
-                            if (!String.IsNullOrEmpty(href) && (href.Contains("cnn.com") || href.Contains("bleacherreport")))
+                            if (!String.IsNullOrEmpty(href))
                             {
-                                CloudQueueMessage cqm = new CloudQueueMessage(href);
-                                manager.GetUrlQueue().AddMessage(cqm);
+                                if (href.Contains("cnn.com") || href.Contains("bleacherreport"))
+                                {
+                                    CloudQueueMessage cqm = new CloudQueueMessage(href);
+                                    manager.GetUrlQueue().AddMessage(cqm);
+                                }
+                                else
+                                {
+                                    Debug.WriteLine("URL Error! " + url + " does not contain cnn or bleacherreport.");
+                                    ErrorItem newError = new ErrorItem(url, StorageManager.ERROR_NON_VALID_WEBSITE);
+                                    TableOperation eto = TableOperation.Insert(newError);
+                                    manager.GetErrorTable().Execute(eto);
+                                }
                             }
                         }
                     }
