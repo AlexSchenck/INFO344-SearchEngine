@@ -128,7 +128,7 @@ namespace StorageLibrary
             return (int) queue.ApproximateMessageCount;
         }
 
-        public List<String> GetRecentUrls()
+        public List<string> GetRecentUrls()
         {
             List<string> result = new List<string>();
             int indexSize = GetIndexSize();
@@ -138,6 +138,19 @@ namespace StorageLibrary
             foreach (IndexURL iu in urlTable.ExecuteQuery(query))
             {
                 result.Add(iu.URL);
+            }
+
+            return result;
+        }
+
+        public List<string> GetErrors()
+        {
+            List<string> result = new List<string>();
+            TableQuery<ErrorItem> query = new TableQuery<ErrorItem>();
+
+            foreach (ErrorItem ei in errorTable.ExecuteQuery(query))
+            {
+                result.Add(ei.URL);
             }
 
             return result;

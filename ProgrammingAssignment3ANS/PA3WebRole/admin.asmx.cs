@@ -85,6 +85,12 @@ namespace PA3WebRole
             results.Add(sumString);
 
             // Any error URL's
+            string errorString = "";
+            foreach (string e in manager.GetErrors())
+            {
+                errorString += e + " ";
+            }
+            results.Add(errorString);
 
             return results; 
         }

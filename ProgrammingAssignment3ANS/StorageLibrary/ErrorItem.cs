@@ -22,6 +22,6 @@ namespace StorageLibrary
 
         public string URL { get; set; }
 
-        public string Error {get; set; }
+        public string Error { get; set; }
     }
 }
