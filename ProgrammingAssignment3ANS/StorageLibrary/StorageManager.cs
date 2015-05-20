@@ -97,6 +97,7 @@ namespace StorageLibrary
         public void ClearIndex()
         {
             urlTable.DeleteIfExists();
+            errorTable.DeleteIfExists();
         }
 
         public string GetPageTitle(string url)

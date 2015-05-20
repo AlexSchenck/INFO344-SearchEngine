@@ -57,10 +57,14 @@
   <ItemGroup>
     <Folder Include="PA3WebRoleContent\" />
     <Folder Include="PA3WorkerRoleContent\" />
+    <Folder Include="Profiles" />
   </ItemGroup>
   <ItemGroup>
     <DiagnosticsConfiguration Include="PA3WebRoleContent\diagnostics.wadcfgx" />
     <DiagnosticsConfiguration Include="PA3WorkerRoleContent\diagnostics.wadcfgx" />
+  </ItemGroup>
+  <ItemGroup>
+    <PublishProfile Include="Profiles\ANS-PA3Production.azurePubxml" />
   </ItemGroup>
   <!-- Import the target files for this project template -->
   <PropertyGroup>

@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>ANS Web Crawler</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="StyleSheet1.css">
+</head>
+<body>
+    <div class="container">
+        <div class="page-header"><h1>ANS Web Crawler Dashboard</h1></div>
+        <button class="btn btn-primary" onclick="ajaxStartCrawl()">Start Crawling</button>
+        <button class="btn btn-warning" onclick="ajaxStopCrawl()">Stop Crawling</button>
+        <button class="btn btn-danger" onclick="ajaxClearIndex()">Clear Index</button>
+        <br><br>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="URL" id="searchURL" name="searchURL">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" onclick="ajaxSearchURL()">Get Title</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div name="titleSearchResult" id="titleSearchResult"></div>
+        <br>
+        <div name="metrics" id="metrics">Loading metrics...</div>
+    </div>
+    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="Ajax.js"></script>
+</body>
+</html>
