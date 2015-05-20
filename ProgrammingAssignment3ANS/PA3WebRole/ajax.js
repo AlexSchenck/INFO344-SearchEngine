@@ -93,8 +93,8 @@ function ajaxGetStatus()
 
             results += "</b>Error URLs: <br><b>";
             var errors = msg.d[7].split(" ");
-            for (var i = 0; i < recentUrls.length; i++) {
-                results += recentUrls[i] + "<br>";
+            for (var i = 0; i < errors.length; i++) {
+                results += errors[i] + "<br>";
             }
 
             results += "</b>";
