@@ -72,45 +72,56 @@ namespace StorageLibrary
             while (xmlList.Count != 0)
             {
                 XmlDocument xDoc = new XmlDocument();
-                xDoc.Load(xmlList[0]);
-                String xml = xDoc.InnerXml;
 
-                using (XmlReader xreader = XmlReader.Create(new StringReader(xml)))
+                try
                 {
-                    while (xreader.ReadToFollowing("loc"))
+                    xDoc.Load(xmlList[0]);
+                    String xml = xDoc.InnerXml;
+
+                    using (XmlReader xreader = XmlReader.Create(new StringReader(xml)))
                     {
-                        string content = xreader.ReadElementContentAsString();
-
-                        DateTime urlDate;
-                        int validDate = 0;
-
-                        // Link has an associated last modified date
-                        if (robotTxt != StorageManager.BLEACHER_REPORT_ROBOTS && xreader.ReadToFollowing("lastmod"))
+                        while (xreader.ReadToFollowing("loc"))
                         {
-                            urlDate = DateTime.Parse(xreader.ReadElementContentAsString());
-                            validDate = DateTime.Compare(urlDate, minimumDate);
-                        }
+                            string content = xreader.ReadElementContentAsString();
 
-                        if (validDate >= 0)
-                        {
-                            // XML -- add to load list
-                            if (content.EndsWith(".xml"))
+                            DateTime urlDate;
+                            int validDate = 0;
+
+                            // Link has an associated last modified date
+                            if (robotTxt != StorageManager.BLEACHER_REPORT_ROBOTS && xreader.ReadToFollowing("lastmod"))
                             {
-                                xmlList.Add(content);
-                                Debug.WriteLine("Loaded " + content);
+                                urlDate = DateTime.Parse(xreader.ReadElementContentAsString());
+                                validDate = DateTime.Compare(urlDate, minimumDate);
                             }
-                            // HTML -- add to crawl list
-                            else if (content.Contains("cnn") || content.Contains("bleacherreport"))
+
+                            if (validDate >= 0)
                             {
-                                manager.GetUrlQueue().AddMessage(new CloudQueueMessage(content));
-                                Debug.WriteLine("Loaded " + content);
+                                // XML -- add to load list
+                                if (content.EndsWith(".xml"))
+                                {
+                                    xmlList.Add(content);
+                                    Debug.WriteLine("Loaded " + content);
+                                }
+                                // HTML -- add to crawl list
+                                else if (content.Contains("cnn") || content.Contains("bleacherreport"))
+                                {
+                                    manager.GetUrlQueue().AddMessage(new CloudQueueMessage(content));
+                                    Debug.WriteLine("Loaded " + content);
+                                }
                             }
-                        }
-                        else
-                        {
-                            Debug.WriteLine(content + " did not pass date check");
+                            else
+                            {
+                                Debug.WriteLine(content + " did not pass date check");
+                            }
                         }
                     }
+                }
+                catch(System.Net.WebException)
+                {
+                    Debug.WriteLine("URL Error! " + xmlList[0] + " 404'd.");
+                    ErrorItem error = new ErrorItem(xmlList[0], StorageManager.ERROR_404);
+                    TableOperation to = TableOperation.Insert(error);
+                    manager.GetErrorTable().Execute(to);
                 }
 
                 xmlList.RemoveAt(0);
@@ -126,6 +137,11 @@ namespace StorageLibrary
 
             if (!url.Equals("/"))
             {
+                while (url.StartsWith("/"))
+                {
+                    url = url.Substring(1);
+                }
+
                 if (!manager.ContainsIndexUrl(url))
                 {
                     HtmlDocument htmlPage = new HtmlWeb().Load(url);
@@ -165,24 +181,15 @@ namespace StorageLibrary
                                     CloudQueueMessage cqm = new CloudQueueMessage(href);
                                     manager.GetUrlQueue().AddMessage(cqm);
                                 }
-                                else
-                                {
-                                    Debug.WriteLine("URL Error! " + url + " does not contain cnn or bleacherreport.");
-                                    ErrorItem newError = new ErrorItem(url, StorageManager.ERROR_NON_VALID_WEBSITE);
-                                    TableOperation eto = TableOperation.Insert(newError);
-                                    manager.GetErrorTable().Execute(eto);
-                                }
                             }
                         }
                     }
                 }
                 else
                 {
-                    // Duplicate URL, add to error table
+                    // Duplicate URL, increment duplicate count
                     Debug.WriteLine("URL Error! " + url + " is a duplicate.");
-                    ErrorItem newError = new ErrorItem(url, StorageManager.ERROR_DUPLICATE);
-                    TableOperation to = TableOperation.Insert(newError);
-                    manager.GetErrorTable().Execute(to);
+                    manager.IncrementDuplicates();
                 }
             }
 
