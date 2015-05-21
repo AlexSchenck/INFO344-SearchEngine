@@ -29,6 +29,7 @@ namespace StorageLibrary
         private static CloudTable urlTable; // Table with indexed urls with page titles
         private static CloudTable statusTable; // Table with current status of crawler(s)
         private static CloudTable errorTable; // Table containing list of error urls with specific reasons
+        private static CloudTable duplicatesTable; // Table containing current number of duplicate url's crawled
         private static CloudTable performanceTable; // Table containing worker role performance information
         private static CloudQueue urlQueue; // Queue with urls yet to be indexed
         private static CloudQueue commandQueue; // Queue with commands for worker role
@@ -47,6 +48,9 @@ namespace StorageLibrary
 
             errorTable = tableClient.GetTableReference("errortable");
             errorTable.CreateIfNotExists();
+
+            duplicatesTable = tableClient.GetTableReference("duplicatestable");
+            duplicatesTable.CreateIfNotExists();
 
             performanceTable = tableClient.GetTableReference("performancetable");
             performanceTable.CreateIfNotExists();
@@ -73,6 +77,11 @@ namespace StorageLibrary
             return errorTable;
         }
 
+        public CloudTable GetDuplicatesTable()
+        {
+            return duplicatesTable;
+        }
+
         public CloudTable GetPerformanceTable()
         {
             return performanceTable;
@@ -92,6 +101,26 @@ namespace StorageLibrary
         {
             TableQuery<IndexURL> query = new TableQuery<IndexURL>();
             return urlTable.ExecuteQuery(query).Count();
+        }
+
+        public int GetNumberOfDuplicates()
+        {
+            TableQuery<DuplicateItem> query = new TableQuery<DuplicateItem>();
+            int result = 0;
+
+            foreach (DuplicateItem di in duplicatesTable.ExecuteQuery(query))
+            {
+                result =  di.Count;
+            }
+
+            return result;
+        }
+
+        public void IncrementDuplicates()
+        {
+            DuplicateItem newDup = new DuplicateItem(GetNumberOfDuplicates() + 1);
+            TableOperation to = TableOperation.InsertOrReplace(newDup);
+            duplicatesTable.Execute(to);
         }
 
         public void ClearIndex()
@@ -120,8 +149,9 @@ namespace StorageLibrary
             int indexNum = GetIndexSize();
             TableQuery<ErrorItem> query = new TableQuery<ErrorItem>();
             int errorNum = errorTable.ExecuteQuery(query).Count();
+            int dupNum = GetNumberOfDuplicates();
 
-            return indexNum + errorNum;
+            return indexNum + errorNum + dupNum;
         }
 
         public int GetQueueSize(CloudQueue queue)
