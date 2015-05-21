@@ -137,8 +137,7 @@ namespace PA3WorkerRole
                 }
                 // No pending command, crawler is not loading and url queue is not empty
                 // Take one url and crawl
-                else if (manager.GetQueueSize(manager.GetUrlQueue()) != 0
-                    && manager.GetStatus() == StorageManager.STATUS_IDLE)
+                else if (manager.GetQueueSize(manager.GetUrlQueue()) != 0)
                 {
                     CloudQueue q = manager.GetUrlQueue();
                     CloudQueueMessage url = q.GetMessage();

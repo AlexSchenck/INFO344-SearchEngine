@@ -144,45 +144,55 @@ namespace StorageLibrary
 
                 if (!manager.ContainsIndexUrl(url))
                 {
-                    HtmlDocument htmlPage = new HtmlWeb().Load(url);
-                    var title = htmlPage.DocumentNode.SelectSingleNode("//head/title");
-                    string pageTitle = title.InnerText;
-                    if (pageTitle.Equals("Error"))
+                    try
                     {
-                        Debug.WriteLine("URL Error! " + url + " 404'd.");
-                        ErrorItem error = new ErrorItem(url, StorageManager.ERROR_404);
-                        TableOperation to = TableOperation.Insert(error);
-                        manager.GetErrorTable().Execute(to);
-                    }
-                    else
-                    {
-                        string date = "";
-
-                        try
+                        HtmlDocument htmlPage = new HtmlWeb().Load(url);
+                        var title = htmlPage.DocumentNode.SelectSingleNode("//head/title");
+                        string pageTitle = title.InnerText;
+                        if (pageTitle.Equals("Error"))
                         {
-                            var mod = htmlPage.DocumentNode.SelectSingleNode(".//meta[@name='lastmod']");
-                            string modDateNode = mod.OuterHtml;
-                            date = modDateNode.Split(new char[] { '"' })[1];
+                            Debug.WriteLine("URL Error! " + url + " 404'd.");
+                            ErrorItem error = new ErrorItem(url, StorageManager.ERROR_404);
+                            TableOperation to = TableOperation.Insert(error);
+                            manager.GetErrorTable().Execute(to);
                         }
-                        catch (System.NullReferenceException) { }
-
-                        int index = manager.GetIndexSize();
-                        IndexURL newUrl = new IndexURL(url, pageTitle, date, index);
-                        TableOperation to = TableOperation.Insert(newUrl);
-                        manager.GetUrlTable().Execute(to);
-
-                        foreach (HtmlNode hn in htmlPage.DocumentNode.SelectNodes("//a"))
+                        else
                         {
-                            string href = hn.GetAttributeValue("href", string.Empty);
-                            if (!String.IsNullOrEmpty(href))
+                            string date = "";
+
+                            try
                             {
-                                if (href.Contains("cnn.com") || href.Contains("bleacherreport"))
+                                var mod = htmlPage.DocumentNode.SelectSingleNode(".//meta[@name='lastmod']");
+                                string modDateNode = mod.OuterHtml;
+                                date = modDateNode.Split(new char[] { '"' })[1];
+                            }
+                            catch (System.NullReferenceException) { }
+
+                            int index = manager.GetIndexSize();
+                            IndexURL newUrl = new IndexURL(url, pageTitle, date, index);
+                            TableOperation to = TableOperation.Insert(newUrl);
+                            manager.GetUrlTable().Execute(to);
+
+                            foreach (HtmlNode hn in htmlPage.DocumentNode.SelectNodes("//a"))
+                            {
+                                string href = hn.GetAttributeValue("href", string.Empty);
+                                if (!String.IsNullOrEmpty(href))
                                 {
-                                    CloudQueueMessage cqm = new CloudQueueMessage(href);
-                                    manager.GetUrlQueue().AddMessage(cqm);
+                                    if (href.Contains("cnn.com") || href.Contains("bleacherreport"))
+                                    {
+                                        CloudQueueMessage cqm = new CloudQueueMessage(href);
+                                        manager.GetUrlQueue().AddMessage(cqm);
+                                    }
                                 }
                             }
                         }
+                    }
+                    catch(System.UriFormatException)
+                    {
+                        Debug.WriteLine("URL Error! " + url + " is invalid.");
+                        ErrorItem error = new ErrorItem(url, StorageManager.ERROR_NON_VALID_WEBSITE);
+                        TableOperation to = TableOperation.Insert(error);
+                        manager.GetErrorTable().Execute(to);
                     }
                 }
                 else
