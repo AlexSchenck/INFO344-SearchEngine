@@ -149,6 +149,7 @@ C:\Users\Alex\Documents\GitHub\INFO344-SearchEngine\ProgrammingAssignment3ANS\Pr
 C:\Users\Alex\Documents\GitHub\INFO344-SearchEngine\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\obj\Debug\PA3WebRole\bin\Newtonsoft.Json.dll
 C:\Users\Alex\Documents\GitHub\INFO344-SearchEngine\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\obj\Debug\PA3WebRole\bin\Newtonsoft.Json.xml
 C:\Users\Alex\Documents\GitHub\INFO344-SearchEngine\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\obj\Debug\PA3WebRole\bin\PA3WebRole.dll
+C:\Users\Alex\Documents\GitHub\INFO344-SearchEngine\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\obj\Debug\PA3WebRole\bin\PA3WebRole.dll.config
 C:\Users\Alex\Documents\GitHub\INFO344-SearchEngine\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\obj\Debug\PA3WebRole\bin\PA3WebRole.pdb
 C:\Users\Alex\Documents\GitHub\INFO344-SearchEngine\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\obj\Debug\PA3WebRole\bin\ru\Microsoft.Data.Edm.resources.dll
 C:\Users\Alex\Documents\GitHub\INFO344-SearchEngine\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\obj\Debug\PA3WebRole\bin\ru\Microsoft.Data.OData.resources.dll

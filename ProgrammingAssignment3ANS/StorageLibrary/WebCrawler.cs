@@ -19,7 +19,6 @@ namespace StorageLibrary
     {
         private DateTime minimumDate;
 
-        // WebCrawler -- singleton instance
         public WebCrawler()
         {
             minimumDate = new DateTime(2015, 4, 1);
@@ -103,7 +102,7 @@ namespace StorageLibrary
                                     Debug.WriteLine("Loaded " + content);
                                 }
                                 // HTML -- add to crawl list
-                                else if (content.Contains("cnn") || content.Contains("bleacherreport"))
+                                else if (content.Contains("cnn.com") || content.Contains("bleacherreport"))
                                 {
                                     manager.GetUrlQueue().AddMessage(new CloudQueueMessage(content));
                                     Debug.WriteLine("Loaded " + content);

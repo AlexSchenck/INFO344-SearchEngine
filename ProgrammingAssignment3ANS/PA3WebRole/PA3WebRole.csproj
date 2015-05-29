@@ -88,25 +88,26 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="css\index.css" />
-    <Content Include="js\Ajax.js" />
-    <Content Include="html\index.html" />
-    <Content Include="config\packages.config" />
-    <None Include="config\Web.Debug.config">
+    <Content Include="index.css" />
+    <Content Include="index.js" />
+    <Content Include="dashboard.js" />
+    <Content Include="index.html" />
+    <Content Include="packages.config" />
+    <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-    <None Include="config\Web.Release.config">
+    <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="asmx\admin.asmx" />
-    <Content Include="html\dashboard.html" />
-    <Content Include="css\dashboard.css" />
-    <Content Include="config\Web.config" />
+    <Content Include="admin.asmx" />
+    <Content Include="dashboard.html" />
+    <Content Include="dashboard.css" />
+    <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="asmx\admin.asmx.cs">
+    <Compile Include="admin.asmx.cs">
       <DependentUpon>admin.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>

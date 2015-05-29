@@ -119,6 +119,7 @@ C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignme
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WebRole\obj\Debug\PA3WebRole.csprojResolveAssemblyReference.cache
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WebRole\obj\Debug\PA3WebRole.dll
 C:\Users\Alex\Documents\GitHub\INFO344ProgrammingAssignment3\ProgrammingAssignment3ANS\PA3WebRole\obj\Debug\PA3WebRole.pdb
+C:\Users\Alex\Documents\GitHub\INFO344-SearchEngine\ProgrammingAssignment3ANS\PA3WebRole\bin\PA3WebRole.dll.config
 C:\Users\Alex\Documents\GitHub\INFO344-SearchEngine\ProgrammingAssignment3ANS\PA3WebRole\bin\PA3WebRole.dll
 C:\Users\Alex\Documents\GitHub\INFO344-SearchEngine\ProgrammingAssignment3ANS\PA3WebRole\bin\PA3WebRole.pdb
 C:\Users\Alex\Documents\GitHub\INFO344-SearchEngine\ProgrammingAssignment3ANS\PA3WebRole\bin\Microsoft.Data.Edm.dll
