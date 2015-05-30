@@ -211,11 +211,14 @@ namespace StorageLibrary
                 TableQuery<IndexURL> tableQuery = new TableQuery<IndexURL>()
                     .Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, query[i]));
 
+                List<IndexURL> entities = new List<IndexURL>();
+
                 foreach (IndexURL iu in urlTable.ExecuteQuery(tableQuery))
                 {
-                    string decodedURL = Encoding.UTF8.GetString(Convert.FromBase64String(iu.RowKey));
-                    results.Add(iu.Title);
-                    results.Add(decodedURL);
+                    //string decodedURL = Encoding.UTF8.GetString(Convert.FromBase64String(iu.RowKey));
+                    //results.Add(iu.Title);
+                    //results.Add(decodedURL);
+                    entities.Add(iu);
                 }
             }
 
