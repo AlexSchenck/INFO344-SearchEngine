@@ -172,26 +172,31 @@ namespace StorageLibrary
 
                         int index = manager.GetIndexSize();
 
+                        // Removes " - Cnn.com"
+                        pageTitle = pageTitle.Split(new string[] {" - "}, StringSplitOptions.None)[0];
+
+                        // Removes " | Bleacher Report"
+                        pageTitle = pageTitle.Split(new string[] {" | "}, StringSplitOptions.None)[0];
+
                         // Separates into keywords
                         String[] keywords = pageTitle.Split(new char[] { ' ' });
+
                         string convertedURL = Convert.ToBase64String(Encoding.UTF8.GetBytes(url));
+
                         // Index the URL for every word in the title
                         foreach (string s in keywords)
                         {
-                            if (!s.Equals("-") && !s.Equals("CNN.com"))
+                            try
                             {
-                                try
-                                {
-                                    // Remove punctuation
-                                    s.Replace("^[^a-zA-Z]+", "");
+                                // Remove punctuation
+                                String temp = new string(s.ToCharArray().Where(c => !char.IsPunctuation(c)).ToArray());
                                     
-                                    string convertedS = Convert.ToBase64String(Encoding.UTF8.GetBytes(s.ToLower()));
-                                    IndexURL newUrl = new IndexURL(convertedURL, convertedS, pageTitle, date, index);
-                                    TableOperation to = TableOperation.Insert(newUrl);
-                                    manager.GetUrlTable().Execute(to);
-                                }
-                                catch (Microsoft.WindowsAzure.Storage.StorageException) { }
+                                string convertedS = Convert.ToBase64String(Encoding.UTF8.GetBytes(temp.ToLower()));
+                                IndexURL newUrl = new IndexURL(convertedURL, convertedS, pageTitle, date, index);
+                                TableOperation to = TableOperation.Insert(newUrl);
+                                manager.GetUrlTable().Execute(to);
                             }
+                            catch (Microsoft.WindowsAzure.Storage.StorageException) { }
                         }  
 
                         foreach (HtmlNode hn in htmlPage.DocumentNode.SelectNodes("//a"))

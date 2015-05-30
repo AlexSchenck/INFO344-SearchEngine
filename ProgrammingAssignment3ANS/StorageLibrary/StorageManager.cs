@@ -209,8 +209,7 @@ namespace StorageLibrary
             for (int i = 0; i < query.Length; i++)
             {
                 TableQuery<IndexURL> tableQuery = new TableQuery<IndexURL>()
-                    .Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, query[i]))
-                    .Take(100);
+                    .Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, query[i]));
 
                 foreach (IndexURL iu in urlTable.ExecuteQuery(tableQuery))
                 {
