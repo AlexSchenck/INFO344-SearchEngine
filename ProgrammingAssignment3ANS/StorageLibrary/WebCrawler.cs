@@ -173,10 +173,10 @@ namespace StorageLibrary
                         int index = manager.GetIndexSize();
 
                         // Removes " - Cnn.com"
-                        pageTitle = pageTitle.Split(new string[] {" - "}, StringSplitOptions.None)[0];
+                        pageTitle = pageTitle.Split(new string[] {" - CNN.com"}, StringSplitOptions.None)[0];
 
                         // Removes " | Bleacher Report"
-                        pageTitle = pageTitle.Split(new string[] {" | "}, StringSplitOptions.None)[0];
+                        pageTitle = pageTitle.Split(new string[] {" | Bleacher Report"}, StringSplitOptions.None)[0];
 
                         // Separates into keywords
                         String[] keywords = pageTitle.Split(new char[] { ' ' });
