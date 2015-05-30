@@ -110,15 +110,15 @@ namespace PA3WorkerRole
                     // Start message
                     if (commandMessage.AsString.Equals(StorageManager.START_MESSAGE))
                     {
-                        // Always remove from queue
-                        manager.GetCommandQueue().DeleteMessage(commandMessage);
-
                         // Crawler is idling, start crawl
                         if (manager.GetStatus() == StorageManager.STATUS_IDLE)
                         {
                             crawler.Load(manager, StorageManager.CNN_ROBOTS);
                             crawler.Load(manager, StorageManager.BLEACHER_REPORT_ROBOTS);
                         }
+
+                        // Always remove from queue
+                        manager.GetCommandQueue().DeleteMessage(commandMessage);
                     }
                     // Stop message
                     else if (commandMessage.AsString.Equals(StorageManager.STOP_MESSAGE))
@@ -126,12 +126,12 @@ namespace PA3WorkerRole
                         // Crawler is still loading, keep stop message pending
                         if (manager.GetStatus() != StorageManager.STATUS_LOADING)
                         {
-                            manager.GetCommandQueue().DeleteMessage(commandMessage);
-
                             // Crawler is currently crawling
                             // Stop all crawling and clear url queue
                             manager.GetUrlQueue().Clear();
                             manager.SetStatus(StorageManager.STATUS_IDLE);
+
+                            manager.GetCommandQueue().DeleteMessage(commandMessage);
                         }
                     }
                 }

@@ -1,5 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<RoleModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="PA3WebRole" version="2.5.6499.15" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition">
+<RoleModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="PA3WebRole" version="2.6.6496.2" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition">
+  <Startup>
+    <Task commandLine="DiagnosticsPluginLauncher.exe" taskType="background" relativePath="plugins\Diagnostics">
+      <Environment>
+        <Variable name="IsEmulated" value="true" />
+        <Variable name="RdModuleName" value="Diagnostics" />
+        <Variable name="WaRoleType" value="IISWebRole" />
+      </Environment>
+    </Task>
+  </Startup>
   <Runtime>
     <EntryPoint>
       <NetFxEntryPoint assemblyName="PA3WebRole.dll" targetFrameworkVersion="v4.0" />

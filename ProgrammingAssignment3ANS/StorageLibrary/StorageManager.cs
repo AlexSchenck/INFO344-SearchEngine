@@ -129,21 +129,6 @@ namespace StorageLibrary
             errorTable.DeleteIfExists();
         }
 
-        public string GetPageTitle(string url)
-        {
-            string result = "";
-
-            TableQuery<IndexURL> tq = new TableQuery<IndexURL>()
-                .Where(TableQuery.GenerateFilterCondition("URL", QueryComparisons.Equal, url));
-
-            foreach (IndexURL iu in urlTable.ExecuteQuery(tq))
-            {
-                result = iu.Title;
-            }
-
-            return result;
-        }
-
         public int GetTotalUrlsCrawled()
         {
             int indexNum = GetIndexSize();
@@ -158,21 +143,6 @@ namespace StorageLibrary
         {
             queue.FetchAttributes();
             return (int) queue.ApproximateMessageCount;
-        }
-
-        public List<string> GetRecentUrls()
-        {
-            List<string> result = new List<string>();
-            int indexSize = GetIndexSize();
-            TableQuery<IndexURL> query = new TableQuery<IndexURL>()
-                .Where(TableQuery.GenerateFilterConditionForInt("Index", QueryComparisons.GreaterThan, indexSize - 10));
-
-            foreach (IndexURL iu in urlTable.ExecuteQuery(query))
-            {
-                result.Add(iu.URL);
-            }
-
-            return result;
         }
 
         public List<string> GetErrors()
@@ -227,7 +197,7 @@ namespace StorageLibrary
         public bool ContainsIndexUrl(string url)
         {
             TableQuery<IndexURL> query = new TableQuery<IndexURL>()
-                .Where(TableQuery.GenerateFilterCondition("URL", QueryComparisons.Equal, url));
+                .Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, url));
 
             return urlTable.ExecuteQuery(query).Count() > 0;
         }
