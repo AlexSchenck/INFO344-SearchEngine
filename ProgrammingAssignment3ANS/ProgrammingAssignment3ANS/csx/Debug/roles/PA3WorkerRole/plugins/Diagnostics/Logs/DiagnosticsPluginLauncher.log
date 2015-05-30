@@ -1,3 +1,14 @@
-DiagnosticsPluginLauncher.exe Information: 0 : [5/30/2015 12:41:12 AM] Emulator config file set to C:\Users\Alex\Documents\GitHub\INFO344-SearchEngine\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\csx\Debug\roles\PA3WorkerRole\approot\diagnostics.wadcfgx
-DiagnosticsPluginLauncher.exe Information: 0 : [5/30/2015 12:41:12 AM] DiagnosticsStoreRootPath set to: C:\Users\Alex\AppData\Local\dftmp\Resources\2e27b483-470f-49fe-a776-1cb2660cc48e
-DiagnosticsPluginLauncher.exe Information: 0 : [5/30/2015 12:41:12 AM] Loading config file: C:\Users\Alex\Documents\GitHub\INFO344-SearchEngine\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\csx\Debug\roles\PA3WorkerRole\approot\diagnostics.wadcfgx
+DiagnosticsPluginLauncher.exe Information: 0 : [5/30/2015 6:30:08 AM] Emulator config file set to C:\Users\Alex\Documents\GitHub\INFO344-SearchEngine\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\csx\Debug\roles\PA3WorkerRole\approot\diagnostics.wadcfgx
+DiagnosticsPluginLauncher.exe Information: 0 : [5/30/2015 6:30:08 AM] DiagnosticsStoreRootPath set to: C:\Users\Alex\AppData\Local\dftmp\Resources\b2d0b966-7ff2-40bb-8d39-3a3a112e4b73
+DiagnosticsPluginLauncher.exe Information: 0 : [5/30/2015 6:30:08 AM] Loading config file: C:\Users\Alex\Documents\GitHub\INFO344-SearchEngine\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\csx\Debug\roles\PA3WorkerRole\approot\diagnostics.wadcfgx
+DiagnosticsPluginLauncher.exe Information: 0 : [5/30/2015 6:30:08 AM] Checking VM Type
+DiagnosticsPluginLauncher.exe Information: 0 : [5/30/2015 6:30:08 AM] Emulator config file set to C:\Users\Alex\Documents\GitHub\INFO344-SearchEngine\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\csx\Debug\roles\PA3WorkerRole\approot\diagnostics.wadcfgx
+DiagnosticsPluginLauncher.exe Information: 0 : [5/30/2015 6:30:08 AM] Extension set to Emulator Mode
+DiagnosticsPluginLauncher.exe Information: 0 : [5/30/2015 6:30:08 AM] Reading XML configuration file
+DiagnosticsPluginLauncher.exe Information: 0 : [5/30/2015 6:30:08 AM] Bypassing private config decryption
+DiagnosticsPluginLauncher.exe Information: 0 : [5/30/2015 6:30:08 AM] Stopping the running plugin, if any
+DiagnosticsPluginLauncher.exe Information: 0 : [5/30/2015 6:30:08 AM] No DiagnosticsPlugin is running.
+DiagnosticsPluginLauncher.exe Information: 0 : [5/30/2015 6:30:08 AM] Killing any DiagnosticsPlugin that might remain.
+DiagnosticsPluginLauncher.exe Information: 0 : [5/30/2015 6:30:08 AM] Killing any MonAgentHost that might remain.
+DiagnosticsPluginLauncher.exe Information: 0 : [5/30/2015 6:30:08 AM] Diagnostics plugin stopped successfully
+DiagnosticsPluginLauncher.exe Information: 0 : [5/30/2015 6:30:08 AM] Resetting DiagnosticPlugin

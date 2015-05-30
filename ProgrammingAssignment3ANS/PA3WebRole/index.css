@@ -1,3 +1,7 @@
 ﻿.page-header {
     text-align: center;
 }
+
+#resultsDiv {
+    margin-top: 25px;
+}

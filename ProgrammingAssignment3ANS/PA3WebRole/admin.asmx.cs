@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Services;
 
@@ -73,6 +74,21 @@ namespace PA3WebRole
             results.Add(manager.GetIndexSize().ToString());
 
             return results; 
+        }
+
+        [WebMethod]
+        public List<string> SearchQuery(string query)
+        {
+            // Split query into lowercase words
+            string[] keyWords = query.ToLower().Split(new char[] { ' ' });
+
+            // Convert each word
+            for (int i = 0; i < keyWords.Length; i++)
+            {
+                keyWords[i] = Convert.ToBase64String(Encoding.UTF8.GetBytes(keyWords[i]));
+            }
+
+            return manager.SearchIndex(keyWords);
         }
     }
 }

@@ -201,5 +201,26 @@ namespace StorageLibrary
 
             return urlTable.ExecuteQuery(query).Count() > 0;
         }
+
+        public List<string> SearchIndex(string[] query)
+        {
+            List<string> results = new List<string>();
+
+            for (int i = 0; i < query.Length; i++)
+            {
+                TableQuery<IndexURL> tableQuery = new TableQuery<IndexURL>()
+                    .Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, query[i]))
+                    .Take(100);
+
+                foreach (IndexURL iu in urlTable.ExecuteQuery(tableQuery))
+                {
+                    string decodedURL = Encoding.UTF8.GetString(Convert.FromBase64String(iu.RowKey));
+                    results.Add(iu.Title);
+                    results.Add(decodedURL);
+                }
+            }
+
+            return results;
+        }
     }
 }

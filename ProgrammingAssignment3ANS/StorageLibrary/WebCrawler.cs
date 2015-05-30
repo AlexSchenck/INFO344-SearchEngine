@@ -178,14 +178,17 @@ namespace StorageLibrary
                         // Index the URL for every word in the title
                         foreach (string s in keywords)
                         {
-                            try
+                            if (!s.Equals("-") && !s.Equals("CNN.com"))
                             {
-                                string convertedS = Convert.ToBase64String(Encoding.UTF8.GetBytes(s));
-                                IndexURL newUrl = new IndexURL(convertedURL, convertedS, pageTitle, date, index);
-                                TableOperation to = TableOperation.Insert(newUrl);
-                                manager.GetUrlTable().Execute(to);
+                                try
+                                {
+                                    string convertedS = Convert.ToBase64String(Encoding.UTF8.GetBytes(s.ToLower()));
+                                    IndexURL newUrl = new IndexURL(convertedURL, convertedS, pageTitle, date, index);
+                                    TableOperation to = TableOperation.Insert(newUrl);
+                                    manager.GetUrlTable().Execute(to);
+                                }
+                                catch (Microsoft.WindowsAzure.Storage.StorageException) { }
                             }
-                            catch (Microsoft.WindowsAzure.Storage.StorageException) { }
                         }  
 
                         foreach (HtmlNode hn in htmlPage.DocumentNode.SelectNodes("//a"))
