@@ -182,6 +182,9 @@ namespace StorageLibrary
                             {
                                 try
                                 {
+                                    // Remove punctuation
+                                    s.Replace("^[^a-zA-Z]+", "");
+                                    
                                     string convertedS = Convert.ToBase64String(Encoding.UTF8.GetBytes(s.ToLower()));
                                     IndexURL newUrl = new IndexURL(convertedURL, convertedS, pageTitle, date, index);
                                     TableOperation to = TableOperation.Insert(newUrl);
