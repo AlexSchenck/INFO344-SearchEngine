@@ -27,13 +27,7 @@
       <Content destination=".\">
         <SourceDirectory path="C:\Users\Alex\Documents\GitHub\INFO344-SearchEngine\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\rcf\Debug\PA3WebRoleContent\" />
       </Content>
-      <Content destination=".\">
-        <SourceDirectory path="C:\Users\Alex\Documents\GitHub\INFO344-SearchEngine\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\ecf\PA3WebRoleContent\" />
-      </Content>
     </Contents>
-    <Imports>
-      <Import moduleName="Diagnostics" />
-    </Imports>
   </WebRole>
   <WorkerRole name="PA3WorkerRole" vmsize="Small">
     <ConfigurationSettings>
@@ -43,12 +37,6 @@
       <Content destination=".\">
         <SourceDirectory path="C:\Users\Alex\Documents\GitHub\INFO344-SearchEngine\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\rcf\Debug\PA3WorkerRoleContent\" />
       </Content>
-      <Content destination=".\">
-        <SourceDirectory path="C:\Users\Alex\Documents\GitHub\INFO344-SearchEngine\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\ecf\PA3WorkerRoleContent\" />
-      </Content>
     </Contents>
-    <Imports>
-      <Import moduleName="Diagnostics" />
-    </Imports>
   </WorkerRole>
 </ServiceDefinition>
