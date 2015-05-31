@@ -24,6 +24,8 @@ namespace StorageLibrary
         public static int RAM_COUNTER = 2;
         public static string CNN_ROBOTS = "http://www.cnn.com/robots.txt";
         public static string BLEACHER_REPORT_ROBOTS = "http://bleacherreport.com/robots.txt";
+        public static string BLOB_NAME = "ansblob";
+        public static string BLOB_FILE_NAME = "WikipediaTitles";
 
         private static CloudStorageAccount storageAccount;
         private static CloudTable urlTable; // Table with indexed urls with page titles
@@ -202,27 +204,30 @@ namespace StorageLibrary
             return urlTable.ExecuteQuery(query).Count() > 0;
         }
 
-        public List<string> SearchIndex(string[] query)
+        public List<Tuple<string, int, string, string>> SearchIndex(string[] query)
         {
-            List<string> results = new List<string>();
+            List<IndexURL> entities = new List<IndexURL>();
 
             for (int i = 0; i < query.Length; i++)
             {
                 TableQuery<IndexURL> tableQuery = new TableQuery<IndexURL>()
                     .Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, query[i]));
 
-                List<IndexURL> entities = new List<IndexURL>();
-
                 foreach (IndexURL iu in urlTable.ExecuteQuery(tableQuery))
                 {
-                    //string decodedURL = Encoding.UTF8.GetString(Convert.FromBase64String(iu.RowKey));
-                    //results.Add(iu.Title);
-                    //results.Add(decodedURL);
                     entities.Add(iu);
                 }
             }
 
-            return results;
+           var result =  entities
+                .GroupBy(x => x.RowKey)
+                .Select(x => new Tuple<string, int, string, string>(Encoding.UTF8.GetString(Convert.FromBase64String(x.Key)), x.ToList().Count, x.ToList()[0].Title, x.ToList()[0].Date))
+                .OrderByDescending(x => x.Item2)
+                .ThenByDescending(x => x.Item4)
+                .ToList();
+                //.Take(100);
+
+            return result;
         }
     }
 }
