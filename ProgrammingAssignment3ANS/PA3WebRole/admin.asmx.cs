@@ -29,6 +29,7 @@ namespace PA3WebRole
         private static Trie trie;
         private static PerformanceCounter memProcess;
         private string filePath;
+        private static Dictionary<string, List<ResultTuple>> cachedResults = new Dictionary<string, List<ResultTuple>>();
 
         public admin()
         {
@@ -85,24 +86,53 @@ namespace PA3WebRole
         [WebMethod]
         public List<ResultTuple> SearchQuery(string query)
         {
-            // Split query into lowercase words
-            string[] keyWords = query.ToLower().Split(new char[] { ' ' });
+            query = query.ToLower();
 
-            // Convert each word
-            for (int i = 0; i < keyWords.Length; i++)
+            // If query is cached
+            if (cachedResults.ContainsKey(query))
             {
-                keyWords[i] = Convert.ToBase64String(Encoding.UTF8.GetBytes(keyWords[i]));
-            }
+                Debug.WriteLine(query + " is a cached query.");
 
-            return manager.SearchIndex(keyWords);
+                return cachedResults[query];
+            }
+            else
+            {
+                // Split query into lowercase words
+                string[] keyWords = query.Split(new char[] { ' ' });
+
+                // Convert each word
+                for (int i = 0; i < keyWords.Length; i++)
+                {
+                    keyWords[i] = Convert.ToBase64String(Encoding.UTF8.GetBytes(keyWords[i]));
+                }
+
+                List<ResultTuple> result = manager.SearchIndex(keyWords);
+
+                // Add to cache, clear cache if count will be over 100
+                if (cachedResults.Count == 100)
+                {
+                    cachedResults.Clear();
+                }
+
+                cachedResults.Add(query, result);
+
+                return result;
+            }
         }
 
         [WebMethod]
         public List<String> searchTrie(string query)
         {
-            List<string> results = trie.searchPrefix(query);
+            if (trie != null)
+            {
+                List<string> results = trie.searchPrefix(query);
 
-            return results;
+                return results;
+            }
+            else
+            {
+                return new List<String>();
+            }
         }
 
         [WebMethod]
@@ -120,8 +150,12 @@ namespace PA3WebRole
                     //Checks memory every 1000 adds
                     //If under 50MB, stops building Trie
                     if (check % 1000 == 0)
+                    {
                         if (memProcess.NextValue() < 50)
+                        {
                             break;
+                        }
+                    }
 
                     trie.addTitle(line);
                     check++;
