@@ -1,18 +1,14 @@
-DiagnosticsPluginLauncher.exe Information: 0 : [5/31/2015 5:29:42 AM] At least one other instance of the launcher is running. Will wait until they all finish
-DiagnosticsPluginLauncher.exe Information: 0 : [5/31/2015 5:29:42 AM] Service running in Emulator Mode, will not wait/kill other instances of the launcher
-DiagnosticsPluginLauncher.exe Information: 0 : [5/31/2015 5:29:42 AM] Emulator config file set to C:\Users\Alex\Documents\GitHub\INFO344-SearchEngine\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\csx\Debug\roles\PA3WorkerRole\approot\diagnostics.wadcfgx
-DiagnosticsPluginLauncher.exe Information: 0 : [5/31/2015 5:29:42 AM] DiagnosticsStoreRootPath set to: C:\Users\Alex\AppData\Local\dftmp\Resources\b86083b7-77b5-4a87-8da8-ce76e7eb5045
-DiagnosticsPluginLauncher.exe Information: 0 : [5/31/2015 5:29:42 AM] Loading config file: C:\Users\Alex\Documents\GitHub\INFO344-SearchEngine\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\csx\Debug\roles\PA3WorkerRole\approot\diagnostics.wadcfgx
-DiagnosticsPluginLauncher.exe Information: 0 : [5/31/2015 5:29:42 AM] Checking VM Type
-DiagnosticsPluginLauncher.exe Information: 0 : [5/31/2015 5:29:42 AM] Emulator config file set to C:\Users\Alex\Documents\GitHub\INFO344-SearchEngine\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\csx\Debug\roles\PA3WorkerRole\approot\diagnostics.wadcfgx
-DiagnosticsPluginLauncher.exe Information: 0 : [5/31/2015 5:29:42 AM] Extension set to Emulator Mode
-DiagnosticsPluginLauncher.exe Information: 0 : [5/31/2015 5:29:42 AM] Reading XML configuration file
-DiagnosticsPluginLauncher.exe Information: 0 : [5/31/2015 5:29:42 AM] Bypassing private config decryption
-DiagnosticsPluginLauncher.exe Information: 0 : [5/31/2015 5:29:42 AM] Stopping the running plugin, if any
-DiagnosticsPluginLauncher.exe Information: 0 : [5/31/2015 5:29:42 AM] No DiagnosticsPlugin is running.
-DiagnosticsPluginLauncher.exe Information: 0 : [5/31/2015 5:29:42 AM] Killing any DiagnosticsPlugin that might remain.
-DiagnosticsPluginLauncher.exe Information: 0 : [5/31/2015 5:29:43 AM] Killing any MonAgentHost that might remain.
-DiagnosticsPluginLauncher.exe Information: 0 : [5/31/2015 5:29:43 AM] Diagnostics plugin stopped successfully
-DiagnosticsPluginLauncher.exe Information: 0 : [5/31/2015 5:29:43 AM] Resetting DiagnosticPlugin
-DiagnosticsPluginLauncher.exe Information: 0 : [5/31/2015 5:30:53 AM] DiagnosticsPlugin launched successfully with new configuration
-DiagnosticsPluginLauncher.exe Information: 0 : [5/31/2015 5:30:53 AM] DiagnosticPlugin exited with code 0
+DiagnosticsPluginLauncher.exe Information: 0 : [5/31/2015 6:10:32 AM] Emulator config file set to C:\Users\Alex\Documents\GitHub\INFO344-SearchEngine\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\csx\Debug\roles\PA3WorkerRole\approot\diagnostics.wadcfgx
+DiagnosticsPluginLauncher.exe Information: 0 : [5/31/2015 6:10:32 AM] DiagnosticsStoreRootPath set to: C:\Users\Alex\AppData\Local\dftmp\Resources\e708456a-dce2-4b71-b7f6-33362933cec4
+DiagnosticsPluginLauncher.exe Information: 0 : [5/31/2015 6:10:32 AM] Loading config file: C:\Users\Alex\Documents\GitHub\INFO344-SearchEngine\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\csx\Debug\roles\PA3WorkerRole\approot\diagnostics.wadcfgx
+DiagnosticsPluginLauncher.exe Information: 0 : [5/31/2015 6:10:32 AM] Checking VM Type
+DiagnosticsPluginLauncher.exe Information: 0 : [5/31/2015 6:10:32 AM] Emulator config file set to C:\Users\Alex\Documents\GitHub\INFO344-SearchEngine\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\csx\Debug\roles\PA3WorkerRole\approot\diagnostics.wadcfgx
+DiagnosticsPluginLauncher.exe Information: 0 : [5/31/2015 6:10:32 AM] Extension set to Emulator Mode
+DiagnosticsPluginLauncher.exe Information: 0 : [5/31/2015 6:10:32 AM] Reading XML configuration file
+DiagnosticsPluginLauncher.exe Information: 0 : [5/31/2015 6:10:32 AM] Bypassing private config decryption
+DiagnosticsPluginLauncher.exe Information: 0 : [5/31/2015 6:10:32 AM] Stopping the running plugin, if any
+DiagnosticsPluginLauncher.exe Information: 0 : [5/31/2015 6:10:33 AM] Found a MonAgentHost.exe. WadArguments: "C:\Users\Alex\Documents\GitHub\INFO344-SearchEngine\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\csx\Debug\roles\PA3WebRole\plugins\Diagnostics\Monitor\x64\MonAgentHost.exe" -LocalPath "C:\Users\Alex\AppData\Local\dftmp\Resources\80935429-22e7-450f-b1f8-c464f2afb82b\WAD0104"  -ConfigFile "C:\Users\Alex\AppData\Local\dftmp\Resources\80935429-22e7-450f-b1f8-c464f2afb82b\WAD0104\Configuration\MaConfig.xml" -ShutDownEvent WADDM-ShutDown-d4294402f4fa4a388fc8cff05ce40a7f  -TotalShutDownEvent WADDM-TotalShutDown-d4294402f4fa4a388fc8cff05ce40a7f -InitializedEvent WADM-StartUp-d4294402f4fa4a388fc8cff05ce40a7f -parent 101404 -events -wadVer1v4 -UseProxyServer -XStoreAccounts WadAccount#true#devstoreaccount1#Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==#http://127.0.0.1:10002#http://127.0.0.1:10001#http://127.0.0.1:10000.
+DiagnosticsPluginLauncher.exe Information: 0 : [5/31/2015 6:10:33 AM] Found a DiagnosticsPlugin.exe. WadArguments: "C:\Users\Alex\Documents\GitHub\INFO344-SearchEngine\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\csx\Debug\roles\PA3WebRole\plugins\Diagnostics\DiagnosticsPlugin.exe" DiagnosticPlugin-ShutdownEvent DiagnosticPlugin-TotalShutdownEvent -wadVer1v4.
+DiagnosticsPluginLauncher.exe Information: 0 : [5/31/2015 6:10:33 AM] Loading config file: C:\Users\Alex\Documents\GitHub\INFO344-SearchEngine\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\csx\Debug\roles\PA3WorkerRole\approot\diagnostics.wadcfgx
+DiagnosticsPluginLauncher.exe Information: 0 : [5/31/2015 6:10:33 AM] Reading XML configuration file
+DiagnosticsPluginLauncher.exe Information: 0 : [5/31/2015 6:10:33 AM] Bypassing private config decryption

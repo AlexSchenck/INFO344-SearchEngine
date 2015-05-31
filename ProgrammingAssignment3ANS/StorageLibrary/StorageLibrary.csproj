@@ -72,6 +72,7 @@
     <Compile Include="ErrorItem.cs" />
     <Compile Include="IndexURL.cs" />
     <Compile Include="PerformanceItem.cs" />
+    <Compile Include="ResultTuple.cs" />
     <Compile Include="StatusItem.cs" />
     <Compile Include="StorageManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

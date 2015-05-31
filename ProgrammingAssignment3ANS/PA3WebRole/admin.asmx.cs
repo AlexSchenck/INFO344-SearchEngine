@@ -83,7 +83,7 @@ namespace PA3WebRole
         }
 
         [WebMethod]
-        public List<Tuple<string, int, string, string>> SearchQuery(string query)
+        public List<ResultTuple> SearchQuery(string query)
         {
             // Split query into lowercase words
             string[] keyWords = query.ToLower().Split(new char[] { ' ' });

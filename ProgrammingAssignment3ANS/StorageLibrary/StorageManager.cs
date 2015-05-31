@@ -7,6 +7,7 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using StorageLibrary;
 
 namespace StorageLibrary
 {
@@ -204,7 +205,7 @@ namespace StorageLibrary
             return urlTable.ExecuteQuery(query).Count() > 0;
         }
 
-        public List<Tuple<string, int, string, string>> SearchIndex(string[] query)
+        public List<ResultTuple> SearchIndex(string[] query)
         {
             List<IndexURL> entities = new List<IndexURL>();
 
@@ -219,7 +220,7 @@ namespace StorageLibrary
                 }
             }
 
-           var result =  entities
+            var result =  entities
                 .GroupBy(x => x.RowKey)
                 .Select(x => new Tuple<string, int, string, string>(Encoding.UTF8.GetString(Convert.FromBase64String(x.Key)), x.ToList().Count, x.ToList()[0].Title, x.ToList()[0].Date))
                 .OrderByDescending(x => x.Item2)
@@ -227,7 +228,14 @@ namespace StorageLibrary
                 .ToList();
                 //.Take(100);
 
-            return result;
+            List<ResultTuple> resultTuples = new List<ResultTuple>();
+
+            for (int i = 0; i < result.Count; i++)
+            {
+                resultTuples.Add(new ResultTuple(result[i]));
+            }
+
+            return resultTuples;
         }
     }
 }
