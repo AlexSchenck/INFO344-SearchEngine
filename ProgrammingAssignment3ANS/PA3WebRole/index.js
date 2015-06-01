@@ -63,4 +63,39 @@ function SearchQuery()
             console.log("ajaxSearchQuery error");
         }
     });
+
+    $.ajax({
+        crossDomain: true,
+        contentType: "application/json; charset=utf-8",
+        url: "http://ec2-54-187-111-5.us-west-2.compute.amazonaws.com/nba.php",
+        data: { name: query },
+        dataType: "jsonp",
+        jsonp: "callback",
+        jsonpCallback: "jsonpCallback",
+        success: function()
+        {
+            console.log("nbaSearch success");
+        },
+        error: function()
+        {
+            console.log("nbaSearch failure");
+        }
+    });
+}
+
+function jsonpCallback(msg)
+{
+    var result = "";
+
+    var nameAndStats = msg.split(",");
+    result += "<b>" + nameAndStats[0] + "</b><br>";
+
+    var elements = nameAndStats[1].split(" ");
+
+    for (var i = 0; i < elements.length; i += 2)
+    {
+        result += elements[i] + ": " + elements[i + 1] + ", ";
+    }
+
+    $("#nbaDiv").html(result);
 }
