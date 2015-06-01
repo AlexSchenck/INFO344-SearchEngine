@@ -113,7 +113,10 @@ namespace StorageLibrary
 
             entities.OrderBy(x => x.Index);
 
-            return entities[0].Index;
+            if (entities.Count == 0)
+                return 0;
+            else
+                return entities[0].Index;
         }
 
         public int GetNumberOfDuplicates()

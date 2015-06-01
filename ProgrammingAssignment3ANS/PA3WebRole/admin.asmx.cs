@@ -30,6 +30,7 @@ namespace PA3WebRole
         private static PerformanceCounter memProcess;
         private string filePath;
         private static Dictionary<string, List<ResultTuple>> cachedResults = new Dictionary<string, List<ResultTuple>>();
+        private static List<string> suggestionStats = new List<string>{ "0", "" }; // index 0 : Total titles, 1 : Last title
 
         public admin()
         {
@@ -93,6 +94,12 @@ namespace PA3WebRole
                 errorString += e + " ";
             }
             results.Add(errorString);
+
+            // Number of suggestion titles
+            results.Add(suggestionStats[0]);
+
+            // Last suggestion title
+            results.Add(suggestionStats[1]);
 
             return results; 
         }
@@ -170,8 +177,14 @@ namespace PA3WebRole
                             break;
                         }
                     }
-
+                    
                     trie.addTitle(line);
+
+                    long suggestionCount = long.Parse(suggestionStats[0]);
+                    suggestionCount++;
+                    suggestionStats[0] = "" + suggestionCount;
+                    suggestionStats[1] = line;
+
                     check++;
                 }
             }
