@@ -80,6 +80,20 @@ namespace PA3WebRole
             // Size of index (table storage with crawled data)
             results.Add(manager.GetIndexSize().ToString());
 
+            // Last 10 URL's crawled
+            string sumString = "";
+            foreach (string s in manager.GetRecentUrls())
+                sumString += s + " ";
+            results.Add(sumString);
+
+            // Any error URL's
+            string errorString = "";
+            foreach (string e in manager.GetErrors())
+            {
+                errorString += e + " ";
+            }
+            results.Add(errorString);
+
             return results; 
         }
 

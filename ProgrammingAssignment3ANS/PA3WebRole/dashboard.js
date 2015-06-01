@@ -84,6 +84,20 @@ function ajaxGetStatus()
             results += "Size of URL Queue: <b>" + msg.d[4] + "</b><br>";
             results += "Size of Index: <b>" + msg.d[5] + "</b><br><br>";
 
+            results += "Last 10 URLs Crawled: <br><b>";
+            var recentUrls = msg.d[6].split(" ");
+            for (var i = 0; i < 10; i++) {
+                results += recentUrls[i] + "<br>";
+            }
+
+            results += "<br>";
+
+            results += "</b>Error URLs: <br><b>";
+            var errors = msg.d[7].split(" ");
+            for (var i = 0; i < errors.length; i++) {
+                results += errors[i] + "<br>";
+            }
+
             results += "</b>";
 
             $("#metrics").html(results);

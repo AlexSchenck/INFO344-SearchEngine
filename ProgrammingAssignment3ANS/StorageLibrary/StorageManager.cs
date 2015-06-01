@@ -103,7 +103,17 @@ namespace StorageLibrary
         public int GetIndexSize()
         {
             TableQuery<IndexURL> query = new TableQuery<IndexURL>();
-            return urlTable.ExecuteQuery(query).Count();
+
+            List<IndexURL> entities = new List<IndexURL>();
+
+            foreach (IndexURL iu in urlTable.ExecuteQuery(query))
+            {
+                entities.Add(iu);
+            }
+
+            entities.OrderBy(x => x.Index);
+
+            return entities[0].Index;
         }
 
         public int GetNumberOfDuplicates()
@@ -146,6 +156,21 @@ namespace StorageLibrary
         {
             queue.FetchAttributes();
             return (int) queue.ApproximateMessageCount;
+        }
+
+        public List<string> GetRecentUrls()
+        {
+            List<string> result = new List<string>();
+            int indexSize = GetIndexSize();
+            TableQuery<IndexURL> query = new TableQuery<IndexURL>()
+                .Where(TableQuery.GenerateFilterConditionForInt("Index", QueryComparisons.GreaterThan, indexSize - 10));
+
+            foreach (IndexURL iu in urlTable.ExecuteQuery(query))
+            {
+                result.Add(Encoding.UTF8.GetString(Convert.FromBase64String(iu.RowKey)));
+            }
+
+            return result;
         }
 
         public List<string> GetErrors()
