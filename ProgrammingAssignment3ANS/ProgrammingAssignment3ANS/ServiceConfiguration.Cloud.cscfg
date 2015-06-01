@@ -3,13 +3,13 @@
   <Role name="PA3WebRole">
     <Instances count="1" />
     <ConfigurationSettings>
-      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=ans;AccountKey=cOjAF3vKQSupufk3TMxlLDaizFbkY4BcalKd6Ji5TNoR7pOjxhk+IkB96U+ZW9WTa9rlY7qDtGqrX2b9VU67KA==" />
     </ConfigurationSettings>
   </Role>
   <Role name="PA3WorkerRole">
     <Instances count="1" />
     <ConfigurationSettings>
-      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=ans;AccountKey=cOjAF3vKQSupufk3TMxlLDaizFbkY4BcalKd6Ji5TNoR7pOjxhk+IkB96U+ZW9WTa9rlY7qDtGqrX2b9VU67KA==" />
     </ConfigurationSettings>
   </Role>
 </ServiceConfiguration>

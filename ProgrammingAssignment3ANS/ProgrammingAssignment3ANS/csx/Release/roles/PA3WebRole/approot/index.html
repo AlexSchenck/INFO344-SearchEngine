@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>ANS Search Engine</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container">
+        <div class="page-header"><h1>ANS Search</h1></div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="searchBox" name="searchBox">
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" onclick="SearchQuery()">Search</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div id="suggestionsDiv" name="suggestionsDiv"></div>
+        <div id="nbaDiv" name="nbaDiv"></div>
+        <div id="resultsDiv" name="resultsDiv"></div>
+    </div>
+    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>

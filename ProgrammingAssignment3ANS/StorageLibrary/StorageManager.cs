@@ -111,7 +111,7 @@ namespace StorageLibrary
                 entities.Add(iu);
             }
 
-            entities.OrderBy(x => x.Index);
+            entities.OrderByDescending(x => x.Index);
 
             if (entities.Count == 0)
                 return 0;
@@ -163,14 +163,29 @@ namespace StorageLibrary
 
         public List<string> GetRecentUrls()
         {
+            List<IndexURL> entities = new List<IndexURL>();
             List<string> result = new List<string>();
-            int indexSize = GetIndexSize();
-            TableQuery<IndexURL> query = new TableQuery<IndexURL>()
-                .Where(TableQuery.GenerateFilterConditionForInt("Index", QueryComparisons.GreaterThan, indexSize - 10));
+            //int indexSize = GetIndexSize();
+            //TableQuery<IndexURL> query = new TableQuery<IndexURL>()
+            //    .Where(TableQuery.GenerateFilterConditionForInt("Index", QueryComparisons.GreaterThan, indexSize - 10));
+
+            //foreach (IndexURL iu in urlTable.ExecuteQuery(query))
+            //{
+            //    result.Add(Encoding.UTF8.GetString(Convert.FromBase64String(iu.RowKey)));
+            //}
+
+            TableQuery<IndexURL> query = new TableQuery<IndexURL>();
 
             foreach (IndexURL iu in urlTable.ExecuteQuery(query))
             {
-                result.Add(Encoding.UTF8.GetString(Convert.FromBase64String(iu.RowKey)));
+                entities.Add(iu);
+            }
+
+            entities.OrderByDescending(x => x.Index);
+
+            for (int i = 0; i < 10; i++)
+            {
+                result.Add(Encoding.UTF8.GetString(Convert.FromBase64String(entities[i].RowKey)));
             }
 
             return result;

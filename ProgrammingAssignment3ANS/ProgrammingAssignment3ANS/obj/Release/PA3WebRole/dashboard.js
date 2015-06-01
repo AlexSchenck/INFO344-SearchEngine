@@ -86,10 +86,13 @@ function ajaxGetStatus()
 
             results += "Last 10 URLs Crawled: <br><b>";
             var recentUrls = msg.d[6].split(" ");
-            for (var i = 0; i < recentUrls.length; i++)
-            {
-                results += recentUrls[i] + "<br>";
+            if (recentUrls.length != 1) {
+                for (var i = 0; i < 10; i++) {
+                    results += recentUrls[i] + "<br>";
+                }
             }
+
+            results += "<br>";
 
             results += "</b>Error URLs: <br><b>";
             var errors = msg.d[7].split(" ");
@@ -97,7 +100,10 @@ function ajaxGetStatus()
                 results += errors[i] + "<br>";
             }
 
-            results += "</b>";
+            results += "</b><br>";
+
+            results += "Number of suggestion titles: <b>" + msg.d[8] + "</b><br>";
+            results += "Last suggestion title: <b>" + msg.d[9] + "</b><br>";
 
             $("#metrics").html(results);
         },
