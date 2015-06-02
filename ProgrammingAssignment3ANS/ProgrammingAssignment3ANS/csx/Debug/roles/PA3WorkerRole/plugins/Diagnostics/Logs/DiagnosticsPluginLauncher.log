@@ -1,0 +1,14 @@
+DiagnosticsPluginLauncher.exe Information: 0 : [6/2/2015 12:21:14 AM] Emulator config file set to C:\Users\Alex\Documents\GitHub\INFO344-SearchEngine\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\csx\Debug\roles\PA3WorkerRole\approot\diagnostics.wadcfgx
+DiagnosticsPluginLauncher.exe Information: 0 : [6/2/2015 12:21:14 AM] DiagnosticsStoreRootPath set to: C:\Users\Alex\AppData\Local\dftmp\Resources\4259512a-77e5-468f-bb15-ae611d8bbc80
+DiagnosticsPluginLauncher.exe Information: 0 : [6/2/2015 12:21:14 AM] Loading config file: C:\Users\Alex\Documents\GitHub\INFO344-SearchEngine\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\csx\Debug\roles\PA3WorkerRole\approot\diagnostics.wadcfgx
+DiagnosticsPluginLauncher.exe Information: 0 : [6/2/2015 12:21:14 AM] Checking VM Type
+DiagnosticsPluginLauncher.exe Information: 0 : [6/2/2015 12:21:14 AM] Emulator config file set to C:\Users\Alex\Documents\GitHub\INFO344-SearchEngine\ProgrammingAssignment3ANS\ProgrammingAssignment3ANS\csx\Debug\roles\PA3WorkerRole\approot\diagnostics.wadcfgx
+DiagnosticsPluginLauncher.exe Information: 0 : [6/2/2015 12:21:14 AM] Extension set to Emulator Mode
+DiagnosticsPluginLauncher.exe Information: 0 : [6/2/2015 12:21:14 AM] Reading XML configuration file
+DiagnosticsPluginLauncher.exe Information: 0 : [6/2/2015 12:21:14 AM] Bypassing private config decryption
+DiagnosticsPluginLauncher.exe Information: 0 : [6/2/2015 12:21:14 AM] Stopping the running plugin, if any
+DiagnosticsPluginLauncher.exe Information: 0 : [6/2/2015 12:21:15 AM] No DiagnosticsPlugin is running.
+DiagnosticsPluginLauncher.exe Information: 0 : [6/2/2015 12:21:15 AM] Killing any DiagnosticsPlugin that might remain.
+DiagnosticsPluginLauncher.exe Information: 0 : [6/2/2015 12:21:15 AM] Killing any MonAgentHost that might remain.
+DiagnosticsPluginLauncher.exe Information: 0 : [6/2/2015 12:21:15 AM] Diagnostics plugin stopped successfully
+DiagnosticsPluginLauncher.exe Information: 0 : [6/2/2015 12:21:15 AM] Resetting DiagnosticPlugin
